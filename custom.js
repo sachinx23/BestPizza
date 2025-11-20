@@ -1,0 +1,1 @@
+// JS vacío por ahora
