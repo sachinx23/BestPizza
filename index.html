@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Best Pizza - Para Llevar</title>
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <style>
+    :root {
+      --gold: #d4a84e;
+      --black: #111111;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      margin: 0;
+      padding: 0;
+    }
+
+    /* LOADER PANTALLA INICIAL */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    #loader img {
+      width: 140px;
+      animation: spin 1.3s linear infinite;
+    }
+
+    #loader.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* HEADER */
+    header {
+      background: var(--black);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-brand img {
+      height: 70px;
+    }
+
+    .navbar-nav .nav-link {
+      color: var(--white) !important;
+      margin: 0 8px;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: var(--gold) !important;
+    }
+
+    /* HERO */
+    .hero_section {
+      background: url("images/pizza_bg.jpg") center/cover no-repeat;
+      text-shadow: 2px 2px 8px #000;
+      padding: 140px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero_section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(0,0,0,0.5), rgba(0,0,0,0.9));
+      z-index: 0;
+    }
+
+    .hero_content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero_section h1 {
+      font-size: 60px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .hero_section p.hero_subtitle {
+      font-size: 22px;
+      margin-bottom: 25px;
+    }
+
+    .hero_btn {
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 8px;
+    }
+
+    /* BOTONES CON BRILLO */
+    a.btn {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    a.btn::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 120%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(212,168,78,0.45),
+        transparent
+      );
+      transition: 0.6s ease;
+    }
+
+    a.btn:hover::after {
+      left: 120%;
+    }
+
+    a.btn:hover {
+      background: var(--gold) !important;
+      color: var(--black) !important;
+    }
+
+    /* MENÚ LISTA PIZZAS */
+    .food_section {
+      padding: 60px 20px;
+    }
+
+    .pizza-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px auto 0;
+      max-width: 750px;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .pizza-list li {
+      background: var(--white);
+      color: var(--black);
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border-left: 5px solid var(--gold);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      transition: transform 0.2s ease;
+    }
+
+    .pizza-list li:hover {
+      transform: translateY(-2px);
+      animation: pulseShadow 1.6s infinite;
+    }
+
+    @keyframes pulseShadow {
+      0% { box-shadow: 0 0 8px rgba(212,168,78,0.2); }
+      50% { box-shadow: 0 0 18px rgba(212,168,78,0.45); }
+      100% { box-shadow: 0 0 8px rgba(212,168,78,0.2); }
+    }
+
+    /* HORARIO / CONTACTO / MAPA / FOOTER */
+    .section_box {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .section_box.dark {
+      background: #1a1a1a;
+    }
+
+    .section_box p {
+      margin: 8px 0;
+    }
+
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 30px 20px 20px;
+      text-align: center;
+      border-top: 3px solid var(--gold);
+    }
+
+    footer p {
+      margin: 4px 0;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .map_container iframe {
+      width: 100%;
+      height: 320px;
+      border: 0;
+      border-radius: 10px;
+    }
+
+    /* SCROLL FADE ANIMATIONS */
+    .scroll-fade {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+
+    .scroll-fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* BRILLO DORADO TEXTO */
+    .shiny-text {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      color: var(--white);
+    }
+
+    .shiny-text::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 120%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(212,168,78,0.7), transparent);
+      transform: skewX(-20deg);
+      animation: shineText 2.8s infinite;
+    }
+
+    @keyframes shineText {
+      0% { left: -120%; }
+      50% { left: 120%; }
+      100% { left: 120%; }
+    }
+
+    /* EFECTO ENCENDIDO TÍTULO */
+    @keyframes ignite {
+      0% { opacity: 0; filter: brightness(0.3) blur(3px); transform: scale(0.8); }
+      40% { opacity: 1; filter: brightness(1.4) blur(1px); transform: scale(1.05); }
+      70% { filter: brightness(1.1) blur(0); transform: scale(1); }
+      100% { opacity: 1; filter: brightness(1); transform: scale(1); }
+    }
+
+    .ignite {
+      animation: ignite 1.8s ease-out forwards;
+    }
+
+    /* HUMO SUTIL DETRÁS DEL TÍTULO */
+    .smoke-bg {
+      position: relative;
+      display: inline-block;
+    }
+
+    .smoke-bg::before {
+      content: "";
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      width: 200px;
+      height: 200px;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 70%);
+      filter: blur(18px);
+      opacity: 0.15;
+      animation: smoke 4s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    @keyframes smoke {
+      0% { opacity: 0.12; transform: translateX(-50%) translateY(0) scale(1); }
+      50% { opacity: 0.22; transform: translateX(-50%) translateY(-12px) scale(1.15); }
+      100% { opacity: 0.12; transform: translateX(-50%) translateY(0) scale(1); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero_section {
+        padding: 120px 15px;
+      }
+      .hero_section h1 {
+        font-size: 40px;
+      }
+      .hero_section p.hero_subtitle {
+        font-size: 18px;
+      }
+      .navbar-brand img {
+        height: 55px;
+      }
+      .pizza-list {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOADER -->
+  <div id="loader">
+    <img src="images/loader_pizza.png" alt="Cargando Best Pizza" />
+  </div>
+
+  <!-- HEADER -->
+  <header class="scroll-fade">
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="#inicio">
+        <img src="images/logo.png" alt="Best Pizza" />
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="background: var(--gold);">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#menu">Menú</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#horario">Horario</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contacto">Contacto</a>
+          </li>
+        </ul>
+        <a href="tel:946413918" class="btn btn-warning ml-3">
+          LLAMAR
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="inicio" class="hero_section scroll-fade">
+    <div class="hero_content">
+      <h1 class="shiny-text ignite smoke-bg">BEST PIZZA</h1>
+      <p class="hero_subtitle shiny-text">Las mejores pizzas de Bilbao listas para llevar</p>
+      <a href="tel:946413918" class="btn btn-danger hero_btn">
+        LLAMAR PARA RECOGER
+      </a>
+    </div>
+  </section>
+
+  <!-- MENÚ -->
+  <section id="menu" class="food_section scroll-fade">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2 class="shiny-text">Nuestras Pizzas</h2>
+      </div>
+      <ul class="pizza-list">
+        <li><strong>MARGARITA — 9,50 €</strong><br>Tomate y Mozzarella</li>
+        <li><strong>NEW YORK — 10,00 €</strong><br>Tomate, Mozzarella y Jamón</li>
+        <li><strong>BASEMARK — 10,50 €</strong><br>Tomate, Mozzarella, Huevo y Jamón</li>
+        <li><strong>CAPRI — 10,50 €</strong><br>Tomate, Mozzarella, Bacon y Champiñones</li>
+        <li><strong>NAPOLE — 12,00 €</strong><br>Tomate, Mozzarella, Provolone, Jamón, Tomate Natural, Ajo y Aceitunas</li>
+        <li><strong>CARBONARA — 11,50 €</strong><br>Nata, Mozzarella, Cebolla, Bacon y Champiñones</li>
+        <li><strong>PEPPERONI — 10,00 €</strong><br>Tomate, Mozzarella y Pepperoni</li>
+        <li><strong>CASERO — 12,00 €</strong><br>Tomate, Mozzarella, Queso de Cabra, Bacon y Nueces</li>
+        <li><strong>IBÉRICA — 12,50 €</strong><br>Tomate, Mozzarella, Jamón Ibérico, Rúcula y Parmesano</li>
+        <li><strong>4 QUESOS — 12,00 €</strong><br>Tomate, Mozzarella, Emmental, Provolone, Queso Azul y Brie</li>
+        <li><strong>FORMAGGI — 12,50 €</strong><br>Tomate, Mozzarella, Emmental, Gorgonzola, Brie y Provolone</li>
+        <li><strong>BARBACOA — 12,00 €</strong><br>Tomate, Mozzarella, Carne, Cebolla y Salsa Barbacoa</li>
+        <li><strong>POLLO — 12,50 €</strong><br>Tomate, Mozzarella, Pimiento Rojo, Pollo, Salsa de Chilly Dulce</li>
+        <li><strong>BOLOÑESA — 12,50 €</strong><br>Tomate, Mozzarella, Carne, Parmesano y Salsa Boloñesa</li>
+        <li><strong>NEPTO — 12,50 €</strong><br>Tomate, Mozzarella, Atún y Anchoas</li>
+        <li><strong>BRASWURST — 12,00 €</strong><br>Tomate, Mozzarella, Salchicha Bratwurst y Parmesano</li>
+        <li><strong>VEGETAL — 12,00 €</strong><br>Tomate, Mozzarella, Champiñones, Pimiento Verde y Cebolla</li>
+        <li><strong>HAWAIANA — 12,00 €</strong><br>Tomate, Mozzarella, Jamón y Piña</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- HORARIO -->
+  <section id="horario" class="section_box dark scroll-fade">
+    <h2 class="shiny-text">Horario</h2>
+    <p class="shiny-text">Lunes–Jueves: 12:30–16:00 / 18:30–23:30</p>
+    <p class="shiny-text">Viernes: 12:30–16:00 / 18:30–07:30</p>
+    <p class="shiny-text">Sábado: 17:30–07:30</p>
+    <p class="shiny-text">Domingo: 17:30–00:00</p>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="section_box scroll-fade">
+    <h2 class="shiny-text">Contacto</h2>
+    <p class="shiny-text">Calle Henao 27, Bilbao</p>
+    <p class="shiny-text">Tel: <a href="tel:946413918" style="color: var(--gold);">946 41 39 18</a></p>
+    <p class="shiny-text">Email: <a href="mailto:bestpizza27@gmail.com" style="color: var(--gold);">bestpizza27@gmail.com</a></p>
+  </section>
+
+  <!-- MAPA -->
+  <section class="section_box scroll-fade">
+    <div class="map_container">
+      <iframe src="https://www.google.com/maps?q=Calle+Henao+27+Bilbao&output=embed" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="scroll-fade">
+    <p class="shiny-text">BEST PIZZA · Calle Henao 27, Bilbao · Tel: 946 41 39 18</p>
+    <p class="shiny-text">© 2025 Best Pizza - Todos los derechos reservados</p>
+  </footer>
+
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script>
+    // Ocultar loader cuando la página carga
+    window.addEventListener("load", function() {
+      setTimeout(function() {
+        var loader = document.getElementById("loader");
+        if (loader) {
+          loader.classList.add("hide");
+        }
+      }, 600);
+    });
+
+    // Animación scroll fade-in
+    document.addEventListener("DOMContentLoaded", function() {
+      const elements = document.querySelectorAll(".scroll-fade");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, { threshold: 0.2 });
+
+      elements.forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
