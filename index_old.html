@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Best Pizza - Las Mejores Pizzas de Bilbao</title>
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* Colores Modo Oscuro */
+      --primary: #ff6b35;
+      --secondary: #f7931e;
+      --accent: #feca57;
+      --dark-bg: #0d0d0d;
+      --darker-bg: #050505;
+      --card-bg: #1a1a1a;
+      --text-light: #ffffff;
+      --text-gray: #b0b0b0;
+      --border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    [data-theme="light"] {
+      --primary: #ff6b35;
+      --secondary: #f7931e;
+      --accent: #e67e22;
+      --dark-bg: #ffffff;
+      --darker-bg: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-light: #1a1a1a;
+      --text-gray: #666666;
+      --border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--dark-bg);
+      color: var(--text-light);
+      overflow-x: hidden;
+      transition: all 0.3s ease;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* LOADER */
+    .loader {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      transition: opacity 0.5s ease;
+    }
+
+    .loader.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader-pizza {
+      width: 120px;
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* HEADER MODERNO */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(13, 13, 13, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    [data-theme="light"] .header {
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      height: 60px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::before {
+      width: 100%;
+    }
+
+    .nav-link:hover {
+      color: var(--primary);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .theme-switcher {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 2px solid var(--border-color);
+      background: var(--card-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 22px;
+    }
+
+    .theme-switcher:hover {
+      border-color: var(--primary);
+      transform: rotate(180deg);
+    }
+
+    .cta-btn {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 15px 35px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+      border: none;
+      font-size: 14px;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(255, 107, 53, 0.5);
+      color: white;
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* HERO SECTION ESPECTACULAR */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(247, 147, 30, 0.1) 100%);
+      overflow: hidden;
+      padding-top: 100px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 107, 53, 0.2) 0%, transparent 70%);
+      top: -200px;
+      right: -200px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(247, 147, 30, 0.15) 0%, transparent 70%);
+      bottom: -100px;
+      left: -100px;
+      animation: float 8s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+    }
+
+    .hero-content {
+      text-align: center;
+      z-index: 2;
+      position: relative;
+      max-width: 900px;
+      padding: 0 20px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255, 107, 53, 0.1);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      padding: 10px 25px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(50px, 8vw, 100px);
+      font-weight: 700;
+      margin-bottom: 20px;
+      line-height: 1.1;
+      animation: fadeInUp 1s ease 0.2s both;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(28px, 4vw, 45px);
+      color: var(--text-gray);
+      margin-bottom: 40px;
+      animation: fadeInUp 1.2s ease 0.4s both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 1.4s ease 0.6s both;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 18px 45px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      box-shadow: 0 15px 40px rgba(255, 107, 53, 0.3);
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 50px rgba(255, 107, 53, 0.5);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-light);
+      padding: 18px 45px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      border: 2px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* SECCIÓN DE MENÚ MODERNA */
+    .menu-section {
+      padding: 120px 20px;
+      background: var(--darker-bg);
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 80px;
+    }
+
+    .section-badge {
+      display: inline-block;
+      background: rgba(255, 107, 53, 0.1);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 6vw, 65px);
+      font-weight: 700;
+      margin-bottom: 15px;
+      line-height: 1.2;
+    }
+
+    .section-description {
+      color: var(--text-gray);
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 30px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .menu-item {
+      background: var(--card-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      border: 1px solid var(--border-color);
+      position: relative;
+    }
+
+    .menu-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 0;
+    }
+
+    .menu-item:hover::before {
+      opacity: 0.05;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+      border-color: var(--primary);
+    }
+
+    .menu-item-image {
+      position: relative;
+      height: 280px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(247, 147, 30, 0.1) 100%);
+    }
+
+    .menu-item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .menu-item:hover .menu-item-image img {
+      transform: scale(1.1) rotate(3deg);
+    }
+
+    .menu-item-price {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 20px;
+      box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+      z-index: 2;
+    }
+
+    .menu-item-content {
+      padding: 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .menu-item-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-light);
+    }
+
+    .menu-item-description {
+      color: var(--text-gray);
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .menu-item-btn {
+      width: 100%;
+      background: transparent;
+      border: 2px solid var(--border-color);
+      color: var(--text-light);
+      padding: 14px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 13px;
+    }
+
+    .menu-item-btn:hover {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      border-color: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* SECCIONES DE INFORMACIÓN */
+    .info-section {
+      padding: 100px 20px;
+      background: var(--dark-bg);
+    }
+
+    .info-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .info-card {
+      background: var(--card-bg);
+      padding: 40px 30px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .info-icon {
+      font-size: 50px;
+      margin-bottom: 20px;
+    }
+
+    .info-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--text-light);
+    }
+
+    .info-text {
+      color: var(--text-gray);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+
+    .info-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .info-link:hover {
+      color: var(--secondary);
+    }
+
+    /* MAPA */
+    .map-section {
+      padding: 0;
+      background: var(--darker-bg);
+    }
+
+    .map-container {
+      width: 100%;
+      height: 500px;
+      position: relative;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      filter: grayscale(20%);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--darker-bg);
+      border-top: 1px solid var(--border-color);
+      padding: 80px 20px 30px;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .footer-logo {
+      height: 80px;
+      margin-bottom: 30px;
+    }
+
+    .footer-text {
+      color: var(--text-gray);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer-divider {
+      height: 1px;
+      background: var(--border-color);
+      margin: 40px 0;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: var(--text-gray);
+      font-size: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-gray);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    /* SCROLL FADE */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ANIMACIONES DE SCROLL */
+    .scroll-fade {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .scroll-fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* EFECTOS DE BRILLO */
+    .shine-effect {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shine-effect::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: skewX(-25deg);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% { left: -100%; }
+      20% { left: 150%; }
+      100% { left: 150%; }
+    }
+
+    /* PARALLAX DECORATION */
+    .deco-element {
+      position: absolute;
+      opacity: 0.05;
+      pointer-events: none;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 992px) {
+      .nav-menu {
+        position: fixed;
+        top: 90px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 90px);
+        background: var(--dark-bg);
+        flex-direction: column;
+        padding: 40px;
+        transition: left 0.3s ease;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .nav-menu.active {
+        left: 0;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      .header-content {
+        padding: 20px;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 50px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .menu-item-image {
+        height: 220px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <img src="images/loader_pizza.png" alt="Cargando..." class="loader-pizza">
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <img src="images/logo.PNG" alt="Best Pizza" class="logo">
+      
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#inicio" class="nav-link">Inicio</a></li>
+          <li><a href="#menu" class="nav-link">Menú</a></li>
+          <li><a href="#horario" class="nav-link">Horario</a></li>
+          <li><a href="#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="theme-switcher" id="themeSwitcher" aria-label="Cambiar tema">
+          <span id="themeIcon">🌙</span>
+        </button>
+        <a href="tel:946413918" class="cta-btn">Llamar</a>
+        <button class="mobile-toggle" id="mobileToggle">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <span class="hero-badge">🍕 Desde 1999</span>
+      <h1>Las Mejores <span class="highlight">Pizzas</span><br>de Bilbao</h1>
+      <p class="hero-subtitle">Auténtico sabor italiano en cada bocado</p>
+      <div class="hero-buttons">
+        <a href="tel:946413918" class="btn-primary">
+          <span>📞</span> Pedir Ahora
+        </a>
+        <a href="#menu" class="btn-secondary">Ver Menú</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENÚ -->
+  <section id="menu" class="food_section scroll-fade">
+    <div class="container">
+      <div class="section-title">
+        <h2>Nuestro Menú</h2>
+        <p>Pizzas artesanales hechas con amor</p>
+      </div>
+      <ul class="pizza-grid">
+        <li class="pizza-card">
+          <div class="pizza-image">
+            <img src="images/pizza.png" alt="Pizza Margarita" loading="lazy">
+            <div class="pizza-price-badge">9,50 €</div>
+          </div>
+          <div class="pizza-content">
+            <div class="pizza-name">MARGARITA</div>
+            <div class="pizza-ingredients">Tomate y Mozzarella</div>
+            <button class="pizza-order-btn" onclick="window.location.href='tel:946413918'">Pedir ahora</button>
+          </div>
+        </li>
+        
+        <li class="pizza-card">
+          <div class="pizza-image">
+            <img src="images/pizza.png" alt="Pizza New York" loading="lazy">
+            <div class="pizza-price-badge">10,00 €</div>
+          </div>
+          <div class="pizza-content">
+            <div class="pizza-name">NEW YORK</div>
+            <div class="pizza-ingredients">Tomate, Mozzarella y Jamón</div>
+            <button class="pizza-order-btn" onclick="window.location.href='tel:946413918'">Pedir ahora</button>
+          </div>
+        </li>
+        
+        <li class="pizza-card">
+          <div class="pizza-image">
+            <img src="images/pizza.png" alt="Pizza Basemark" loading="lazy">
+            <div class="pizza-price-badge">10,50 €</div>
+          </div>
+          <div class="pizza-content">
+            <div class="pizza-name">BASEMARK</div>
+            <div class="pizza-ingredients">Tomate, Mozzarella, Huevo y Jamón</div>
+            <button class="pizza-order-btn" onclick="window.location.href='tel:946413918'">Pedir ahora</button>
+          </div>
+        </li>
+        
+        <li class="pizza-card">
+          <div class="pizza-image">
+            <img src="images/pizza.png" alt="Pizza Capri" loading="lazy">
+            <div class="pizza-price-badge">10,50 €</div>
+          </div>
+          <div class="pizza-content">
+            <div class="pizza-name">CAPRI</div>
+            <div class="pizza-ingredients">Tomate, Mozzarella, Bacon y Champiñones</div>
+            <button class="pizza-order-btn" onclick="window.location.href='tel:946413918'">Pedir ahora</button>
+          </div>
+        </li>
+        
+        <li class="pizza-card">
+          <div class="pizza-image">
+            <img src="images/pizza.png" alt="Pizza Napole" loading="lazy">
+            <div class="pizza-price-badge">12,00 €</div>
+          </div>
+          <div class="pizza-content">
+            <div class="pizza-name">NAPOLE</div>
+            <div class="pizza-ingredients">Tomate, Mozzarella, Provolone, Jamón, Tomate Natural, Ajo y Aceitunas</div>
+            <button class="pizza-order-btn" onclick="window.location.href='tel:946413918'">Pedir ahora</button>
+          </div>
+        </li>
+        
+        <li class="pizza-card">
+          <div class="pizza-image">
+            <img src="images/pizza.png" alt="Pizza Carbonara" loading="lazy">
+            <div class="pizza-price-badge">11,50 €</div>
+          </div>
+          <div class="pizza-content">
+            <div class="pizza-name">CARBONARA</div>
+            <div class="pizza-ingredients">Nata, Mozzarella, Cebolla, Bacon y Champiñones</div>
+            <button class="pizza-order-btn" onclick="window.location.href='tel:946413918'">Pedir ahora</button>
+          </div>
+        </li>
+        
+        <li class="pizza-card">
+          <div class="pizza-image">
+            <img src="images/pizza.png" alt="Pizza Pepperoni" loading="lazy">
+            <div class="pizza-price-badge">10,00 €</div>
+          </div>
+          <div class="pizza-content">
+            <div class="pizza-name">PEPPERONI</div>
+            <div class="pizza-ingredients">Tomate, Mozzarella y Pepperoni</div>
+            <button class="pizza-order-btn" onclick="window.location.href='tel:946413918'">Pedir ahora</button>
+          </div>
+        </li>
+        
+        <li class="pizza-card">
+          <div class="pizza-image">
+            <img src="images/pizza.png" alt="Pizza Casero" loading="lazy">
+            <div class="pizza-price-badge">12,00 €</div>
+          </div>
+          <div class="pizza-content">
+            <div class="pizza-name">CASERO</div>
+            <div class="pizza-ingredients">Tomate, Mozzarella, Queso de Cabra, Bacon y Nueces</div>
+            <button class="pizza-order-btn" onclick="window.location.href='tel:946413918'">Pedir ahora</button>
+          </div>
+        </li>
+        
+        <li class="pizza-card">
+          <div class="pizza-image">
+            <img src="images/pizza.png" alt="Pizza Ibérica" loading="lazy">
+            <div class="pizza-price-badge">12,50 €</div>
+          </div>
+          <div class="pizza-content">
+            <div class="pizza-name">IBÉRICA</div>
+            <div class="pizza-ingredients">Tomate, Mozzarella, Jamón Ibérico, Rúcula y Parmesano</div>
+            <button class="pizza-order-btn" onclick="window.location.href='tel:946413918'">Pedir ahora</button>
+          </div>
+        </li>
+        
+        <li class="pizza-card">
+          <div class="pizza-image">
+            <img src="images/pizza.png" alt="Pizza 4 Quesos" loading="lazy">
+            <div class="pizza-price-badge">12,00 €</div>
+          </div>
+          <div class="pizza-content">
+            <div class="pizza-name">4 QUESOS</div>
+            <div class="pizza-ingredients">Tomate, Mozzarella, Emmental, Provolone, Queso Azul y Brie</div>
+            <button class="pizza-order-btn" onclick="window.location.href='tel:946413918'">Pedir ahora</button>
+          </div>
+        </li>
+        
+        <li class="pizza-card">
+          <div class="pizza-image">
+            <img src="images/pizza.png" alt="Pizza Formaggi" loading="lazy">
+            <div class="pizza-price-badge">12,50 €</div>
+          </div>
+          <div class="pizza-content">
+            <div class="pizza-name">FORMAGGI</div>
+            <div class="pizza-ingredients">Tomate, Mozzarella, Emmental, Gorgonzola, Brie y Provolone</div>
+            <button class="pizza-order-btn" onclick="window.location.href='tel:946413918'">Pedir ahora</button>
+          </div>
+        </li>
+        
+        <li class="pizza-card">
+          <div class="pizza-image">
+            <img src="images/pizza.png" alt="Pizza Barbacoa" loading="lazy">
+            <div class="pizza-price-badge">12,00 €</div>
+          </div>
+          <div class="pizza-content">
+            <div class="pizza-name">BARBACOA</div>
+            <div class="pizza-ingredients">Tomate, Mozzarella, Carne, Cebolla y Salsa Barbacoa</div>
+            <button class="pizza-order-btn" onclick="window.location.href='tel:946413918'">Pedir ahora</button>
+          </div>
+        </li>
+        
+        <li class="pizza-card">
+          <div class="pizza-image">
+            <img src="images/pizza.png" alt="Pizza Pollo" loading="lazy">
+            <div class="pizza-price-badge">12,50 €</div>
+          </div>
+          <div class="pizza-content">
+            <div class="pizza-name">POLLO</div>
+            <div class="pizza-ingredients">Tomate, Mozzarella, Pimiento Rojo, Pollo, Salsa de Chilly Dulce</div>
+            <button class="pizza-order-btn" onclick="window.location.href='tel:946413918'">Pedir ahora</button>
+          </div>
+        </li>
+        
+        <li class="pizza-card">
+          <div class="pizza-image">
+            <img src="images/pizza.png" alt="Pizza Boloñesa" loading="lazy">
+            <div class="pizza-price-badge">12,50 €</div>
+          </div>
+          <div class="pizza-content">
+            <div class="pizza-name">BOLOÑESA</div>
+            <div class="pizza-ingredients">Tomate, Mozzarella, Carne, Parmesano y Salsa Boloñesa</div>
+            <button class="pizza-order-btn" onclick="window.location.href='tel:946413918'">Pedir ahora</button>
+          </div>
+        </li>
+        
+        <li class="pizza-card">
+          <div class="pizza-image">
+            <img src="images/pizza.png" alt="Pizza Nepto" loading="lazy">
+            <div class="pizza-price-badge">12,50 €</div>
+          </div>
+          <div class="pizza-content">
+            <div class="pizza-name">NEPTO</div>
+            <div class="pizza-ingredients">Tomate, Mozzarella, Atún y Anchoas</div>
+            <button class="pizza-order-btn" onclick="window.location.href='tel:946413918'">Pedir ahora</button>
+          </div>
+        </li>
+        
+        <li class="pizza-card">
+          <div class="pizza-image">
+            <img src="images/pizza.png" alt="Pizza Braswurst" loading="lazy">
+            <div class="pizza-price-badge">12,00 €</div>
+          </div>
+          <div class="pizza-content">
+            <div class="pizza-name">BRASWURST</div>
+            <div class="pizza-ingredients">Tomate, Mozzarella, Salchicha Bratwurst y Parmesano</div>
+            <button class="pizza-order-btn" onclick="window.location.href='tel:946413918'">Pedir ahora</button>
+          </div>
+        </li>
+        
+        <li class="pizza-card">
+          <div class="pizza-image">
+            <img src="images/pizza.png" alt="Pizza Vegetal" loading="lazy">
+            <div class="pizza-price-badge">12,00 €</div>
+          </div>
+          <div class="pizza-content">
+            <div class="pizza-name">VEGETAL</div>
+            <div class="pizza-ingredients">Tomate, Mozzarella, Champiñones, Pimiento Verde y Cebolla</div>
+            <button class="pizza-order-btn" onclick="window.location.href='tel:946413918'">Pedir ahora</button>
+          </div>
+        </li>
+        
+        <li class="pizza-card">
+          <div class="pizza-image">
+            <img src="images/pizza.png" alt="Pizza Hawaiana" loading="lazy">
+            <div class="pizza-price-badge">12,00 €</div>
+          </div>
+          <div class="pizza-content">
+            <div class="pizza-name">HAWAIANA</div>
+            <div class="pizza-ingredients">Tomate, Mozzarella, Jamón y Piña</div>
+            <button class="pizza-order-btn" onclick="window.location.href='tel:946413918'">Pedir ahora</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- HORARIO -->
+  <section id="horario" class="info_section dark scroll-fade">
+    <div class="container">
+      <h2>Horario</h2>
+      <div class="schedule-grid">
+        <div class="schedule-item">
+          <div class="day">Lunes–Jueves</div>
+          <div class="hours">12:30–16:00<br>18:30–23:30</div>
+        </div>
+        <div class="schedule-item">
+          <div class="day">Viernes</div>
+          <div class="hours">12:30–16:00<br>18:30–07:30</div>
+        </div>
+        <div class="schedule-item">
+          <div class="day">Sábado</div>
+          <div class="hours">17:30–07:30</div>
+        </div>
+        <div class="schedule-item">
+          <div class="day">Domingo</div>
+          <div class="hours">17:30–00:00</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="info_section scroll-fade">
+    <div class="container">
+      <h2>Contacto</h2>
+      <p><strong>📍 Dirección:</strong> Calle Henao 27, Bilbao</p>
+      <p><strong>📞 Teléfono:</strong> <a href="tel:946413918">946 41 39 18</a></p>
+      <p><strong>✉️ Email:</strong> <a href="mailto:bestpizza27@gmail.com">bestpizza27@gmail.com</a></p>
+    </div>
+  </section>
+
+  <!-- MAPA -->
+  <section class="map_section scroll-fade">
+    <div class="container">
+      <div class="map_container">
+        <iframe src="https://www.google.com/maps?q=Calle+Henao+27+Bilbao&output=embed" loading="lazy" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="scroll-fade">
+    <div class="footer-content">
+      <div class="footer-logo">BEST PIZZA</div>
+      <div class="footer-divider"></div>
+      <p><strong>Calle Henao 27, Bilbao</strong></p>
+      <p>📞 <a href="tel:946413918" style="color: var(--primary-gold); text-decoration: none;">946 41 39 18</a> | 
+         ✉️ <a href="mailto:bestpizza27@gmail.com" style="color: var(--primary-gold); text-decoration: none;">bestpizza27@gmail.com</a></p>
+      <div class="copyright">
+        <p>© 2025 Best Pizza - Todos los derechos reservados | Pizzas artesanales hechas con pasión</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script>
+    // Theme Toggle Functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const htmlElement = document.documentElement;
+
+    // Check for saved theme preference or default to 'dark'
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    htmlElement.setAttribute('data-theme', currentTheme);
+    updateThemeIcon(currentTheme);
+
+    themeToggle.addEventListener('click', function() {
+      const currentTheme = htmlElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      htmlElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+    });
+
+    function updateThemeIcon(theme) {
+      themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
+    }
+
+    // Ocultar loader cuando la página carga
+    window.addEventListener("load", function() {
+      setTimeout(function() {
+        const loader = document.getElementById("loader");
+        if (loader) {
+          loader.classList.add("hide");
+        }
+      }, 800);
+    });
+
+    // Header scroll effect
+    window.addEventListener("scroll", function() {
+      const header = document.getElementById("header");
+      if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    });
+
+    // Smooth scroll para enlaces de navegación
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            const headerHeight = document.getElementById('header').offsetHeight;
+            const targetPosition = target.offsetTop - headerHeight;
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
+    });
+
+    // Animación scroll fade-in con Intersection Observer
+    document.addEventListener("DOMContentLoaded", function() {
+      const elements = document.querySelectorAll(".scroll-fade");
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, { 
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+      });
+
+      elements.forEach(el => observer.observe(el));
+    });
+
+    // Active nav link on scroll
+    window.addEventListener('scroll', function() {
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= (sectionTop - 200)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

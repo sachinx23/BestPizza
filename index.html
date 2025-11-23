@@ -1,448 +1,563 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Best Pizza - Para Llevar</title>
-  <link rel="stylesheet" href="css/bootstrap.css" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Enhanced SEO metadata for better search engine positioning -->
+  <title>Best Pizza Bilbao - Pizzas Artesanales Auténticas | Entrega a Domicilio</title>
+  <meta name="description" content="Descubre Best Pizza, la mejor pizzería artesanal en Bilbao. Pizzas elaboradas con ingredientes frescos, masa casera y horno tradicional. Pide ahora al 946 41 39 18">
+  <meta name="keywords" content="pizza bilbao, pizzería, pizzas artesanales, entrega domicilio bilbao, comida italiana">
+  <meta name="author" content="Best Pizza Bilbao">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="es">
+  
+  <!-- Open Graph for social media sharing -->
+  <meta property="og:type" content="business.business">
+  <meta property="og:title" content="Best Pizza Bilbao - Pizzas Artesanales Auténticas">
+  <meta property="og:description" content="Las mejores pizzas artesanales de Bilbao. Ingredientes frescos, recetas auténticas y pasión por la calidad.">
+  <meta property="og:url" content="https://bestpizza.es">
+  <meta property="og:image" content="images/logo.PNG">
+  <meta property="og:locale" content="es_ES">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Best Pizza Bilbao">
+  <meta name="twitter:description" content="Pizzas artesanales con ingredientes frescos. Entrega rápida en Bilbao.">
+  
+  <!-- Theme color and additional meta -->
+  <meta name="theme-color" content="#C1121F">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'poppins': ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            'brand-red': '#C1121F',
+            'brand-orange': '#E85D2A',
+            'brand-light': '#F5F5F5',
+            'brand-dark': '#1A1A1A',
+          }
+        }
+      },
+      darkMode: 'class'
+    }
+  </script>
   <style>
-    :root {
-      --gold: #d4a84e;
-      --black: #111111;
-      --white: #ffffff;
-    }
-
-    body {
-      font-family: "Poppins", Arial, sans-serif;
-      background: var(--black);
-      color: var(--white);
-      margin: 0;
-      padding: 0;
-    }
-
-    /* LOADER PANTALLA INICIAL */
-    #loader {
-      position: fixed;
-      inset: 0;
-      background: var(--gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      transition: opacity 0.6s ease, visibility 0.6s ease;
-    }
-
-    #loader img {
-      width: 140px;
-      animation: spin 1.3s linear infinite;
-    }
-
-    #loader.hide {
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    /* HEADER */
-    header {
-      background: var(--black);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-      padding: 10px 0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .navbar-brand img {
-      height: 70px;
-    }
-
-    .navbar-nav .nav-link {
-      color: var(--white) !important;
-      margin: 0 8px;
-    }
-
-    .navbar-nav .nav-link:hover {
-      color: var(--gold) !important;
-    }
-
-    /* HERO */
-    .hero_section {
-      background: url("images/pizza_bg.jpg") center/cover no-repeat;
-      text-shadow: 2px 2px 8px #000;
-      padding: 140px 20px;
-      text-align: center;
-      position: relative;
-    }
-
-    .hero_section::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top, rgba(0,0,0,0.5), rgba(0,0,0,0.9));
-      z-index: 0;
-    }
-
-    .hero_content {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero_section h1 {
-      font-size: 60px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .hero_section p.hero_subtitle {
-      font-size: 22px;
-      margin-bottom: 25px;
-    }
-
-    .hero_btn {
-      padding: 15px 30px;
-      font-size: 18px;
-      border-radius: 8px;
-    }
-
-    /* BOTONES CON BRILLO */
-    a.btn {
-      position: relative;
-      overflow: hidden;
-      border-radius: 8px;
-      font-weight: 600;
-    }
-
-    a.btn::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -120%;
-      width: 120%;
-      height: 100%;
-      background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(212,168,78,0.45),
-        transparent
-      );
-      transition: 0.6s ease;
-    }
-
-    a.btn:hover::after {
-      left: 120%;
-    }
-
-    a.btn:hover {
-      background: var(--gold) !important;
-      color: var(--black) !important;
-    }
-
-    /* MENÚ LISTA PIZZAS */
-    .food_section {
-      padding: 60px 20px;
-    }
-
-    .pizza-list {
-      list-style: none;
-      padding: 0;
-      margin: 20px auto 0;
-      max-width: 750px;
-      font-size: 18px;
-      line-height: 1.6;
-    }
-
-    .pizza-list li {
-      background: var(--white);
-      color: var(--black);
-      padding: 15px;
-      margin: 10px 0;
-      border-radius: 8px;
-      border-left: 5px solid var(--gold);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-      transition: transform 0.2s ease;
-    }
-
-    .pizza-list li:hover {
-      transform: translateY(-2px);
-      animation: pulseShadow 1.6s infinite;
-    }
-
-    @keyframes pulseShadow {
-      0% { box-shadow: 0 0 8px rgba(212,168,78,0.2); }
-      50% { box-shadow: 0 0 18px rgba(212,168,78,0.45); }
-      100% { box-shadow: 0 0 8px rgba(212,168,78,0.2); }
-    }
-
-    /* HORARIO / CONTACTO / MAPA / FOOTER */
-    .section_box {
-      padding: 50px 20px;
-      text-align: center;
-    }
-
-    .section_box.dark {
-      background: #1a1a1a;
-    }
-
-    .section_box p {
-      margin: 8px 0;
-    }
-
-    footer {
-      background: var(--black);
-      color: var(--white);
-      padding: 30px 20px 20px;
-      text-align: center;
-      border-top: 3px solid var(--gold);
-    }
-
-    footer p {
-      margin: 4px 0;
-      font-size: 14px;
-      opacity: 0.9;
-    }
-
-    .map_container iframe {
-      width: 100%;
-      height: 320px;
-      border: 0;
-      border-radius: 10px;
-    }
-
-    /* SCROLL FADE ANIMATIONS */
-    .scroll-fade {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.9s ease, transform 0.9s ease;
-    }
-
-    .scroll-fade.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* BRILLO DORADO TEXTO */
-    .shiny-text {
-      position: relative;
-      display: inline-block;
-      overflow: hidden;
-      color: var(--white);
-    }
-
-    .shiny-text::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -120%;
-      width: 120%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(212,168,78,0.7), transparent);
-      transform: skewX(-20deg);
-      animation: shineText 2.8s infinite;
-    }
-
-    @keyframes shineText {
-      0% { left: -120%; }
-      50% { left: 120%; }
-      100% { left: 120%; }
-    }
-
-    /* EFECTO ENCENDIDO TÍTULO */
-    @keyframes ignite {
-      0% { opacity: 0; filter: brightness(0.3) blur(3px); transform: scale(0.8); }
-      40% { opacity: 1; filter: brightness(1.4) blur(1px); transform: scale(1.05); }
-      70% { filter: brightness(1.1) blur(0); transform: scale(1); }
-      100% { opacity: 1; filter: brightness(1); transform: scale(1); }
-    }
-
-    .ignite {
-      animation: ignite 1.8s ease-out forwards;
-    }
-
-    /* HUMO SUTIL DETRÁS DEL TÍTULO */
-    .smoke-bg {
-      position: relative;
-      display: inline-block;
-    }
-
-    .smoke-bg::before {
-      content: "";
-      position: absolute;
-      top: -30px;
-      left: 50%;
-      width: 200px;
-      height: 200px;
-      transform: translateX(-50%);
-      background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 70%);
-      filter: blur(18px);
-      opacity: 0.15;
-      animation: smoke 4s ease-in-out infinite;
-      z-index: -1;
-    }
-
-    @keyframes smoke {
-      0% { opacity: 0.12; transform: translateX(-50%) translateY(0) scale(1); }
-      50% { opacity: 0.22; transform: translateX(-50%) translateY(-12px) scale(1.15); }
-      100% { opacity: 0.12; transform: translateX(-50%) translateY(0) scale(1); }
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .hero_section {
-        padding: 120px 15px;
-      }
-      .hero_section h1 {
-        font-size: 40px;
-      }
-      .hero_section p.hero_subtitle {
-        font-size: 18px;
-      }
-      .navbar-brand img {
-        height: 55px;
-      }
-      .pizza-list {
-        font-size: 16px;
-      }
-    }
+    body { font-family: 'Poppins', sans-serif; }
+    .gradient-brand { background: linear-gradient(135deg, #C1121F 0%, #E85D2A 100%); }
+    .gradient-hero { background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%); }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fadeInUp { animation: fadeInUp 0.6s ease-out; }
+    .transition-all { transition: all 0.3s ease; }
   </style>
 </head>
-<body>
+<body class="bg-white dark:bg-brand-dark transition-colors duration-300">
 
-  <!-- LOADER -->
-  <div id="loader">
-    <img src="images/loader_pizza.png" alt="Cargando Best Pizza" />
-  </div>
+  <!-- Updated header with more refined styling and better spacing -->
+  <header class="bg-white dark:bg-brand-dark shadow-sm fixed w-full top-0 z-40 transition-colors duration-300">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo -->
+        <div class="flex items-center space-x-3">
+          <!-- Using actual logo image instead of SVG -->
+          <img src="images/logo.PNG" alt="Best Pizza Logo" class="h-10 w-auto transform hover:scale-110 transition-transform">
+          <span class="text-xl font-bold text-brand-dark dark:text-white tracking-tight">BEST PIZZA</span>
+        </div>
 
-  <!-- HEADER -->
-  <header class="scroll-fade">
-    <nav class="navbar navbar-expand-lg">
-      <a class="navbar-brand" href="#inicio">
-        <img src="images/logo.PNG" alt="Best Pizza" />
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="background: var(--gold);">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#menu">Menú</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#horario">Horario</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#contacto">Contacto</a>
-          </li>
-        </ul>
-        <a href="tel:946413918" class="btn btn-warning ml-3">
-          LLAMAR
-        </a>
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#inicio" class="text-gray-700 dark:text-gray-300 hover:text-brand-red dark:hover:text-brand-red font-medium transition">Inicio</a>
+          <a href="#menu" class="text-gray-700 dark:text-gray-300 hover:text-brand-red dark:hover:text-brand-red font-medium transition">Menú</a>
+          <a href="#horario" class="text-gray-700 dark:text-gray-300 hover:text-brand-red dark:hover:text-brand-red font-medium transition">Horario</a>
+          <a href="#contacto" class="text-gray-700 dark:text-gray-300 hover:text-brand-red dark:hover:text-brand-red font-medium transition">Contacto</a>
+          
+          <!-- Theme Toggle -->
+          <button id="themeToggle" class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition">
+            <!-- Icon will be updated by JavaScript based on theme -->
+            <svg id="themeIcon" class="w-6 h-6 text-gray-700" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+          </button>
+          
+          <!-- Call Button -->
+          <a href="tel:946413918" class="gradient-brand text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transform hover:-translate-y-1 transition flex items-center gap-2">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+            </svg>
+            Llamar
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-brand-light dark:hover:bg-gray-700">
+          <svg class="w-6 h-6 text-brand-dark dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="hidden md:hidden pb-4">
+        <div class="flex flex-col space-y-3">
+          <a href="#inicio" class="text-gray-700 dark:text-gray-300 hover:text-brand-red font-medium px-4 py-2 rounded-lg hover:bg-brand-light dark:hover:bg-gray-700 transition">Inicio</a>
+          <a href="#menu" class="text-gray-700 dark:text-gray-300 hover:text-brand-red font-medium px-4 py-2 rounded-lg hover:bg-brand-light dark:hover:bg-gray-700 transition">Menú</a>
+          <a href="#horario" class="text-gray-700 dark:text-gray-300 hover:text-brand-red font-medium px-4 py-2 rounded-lg hover:bg-brand-light dark:hover:bg-gray-700 transition">Horario</a>
+          <a href="#contacto" class="text-gray-700 dark:text-gray-300 hover:text-brand-red font-medium px-4 py-2 rounded-lg hover:bg-brand-light dark:hover:bg-gray-700 transition">Contacto</a>
+          <div class="flex items-center justify-between px-4">
+            <span class="text-gray-700 dark:text-gray-300 font-medium">Tema</span>
+            <button id="mobileThemeToggle" class="p-2 rounded-full bg-gray-100 dark:bg-gray-700">
+              <!-- Icon will be updated by JavaScript based on theme -->
+              <svg id="mobileThemeIcon" class="w-6 h-6 text-gray-700" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+              </svg>
+            </button>
+          </div>
+          <a href="tel:946413918" class="gradient-brand text-white text-center px-6 py-3 rounded-full font-semibold mx-4 flex items-center justify-center gap-2">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+            </svg>
+            Llamar Ahora
+          </a>
+        </div>
       </div>
     </nav>
   </header>
 
-  <!-- HERO -->
-  <section id="inicio" class="hero_section scroll-fade">
-    <div class="hero_content">
-      <h1 class="shiny-text ignite smoke-bg">BEST PIZZA</h1>
-      <p class="hero_subtitle shiny-text">Las mejores pizzas de Bilbao listas para llevar</p>
-      <a href="tel:946413918" class="btn btn-danger hero_btn">
-        LLAMAR PARA RECOGER
-      </a>
+  <!-- Updated hero section with background image overlay -->
+  <section id="inicio" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20" style="background: linear-gradient(135deg, rgba(26, 26, 26, 0.75) 0%, rgba(45, 45, 45, 0.75) 100%), url('images/pizza_bg.jpg') center/cover no-repeat; background-attachment: fixed;">
+    <div class="absolute inset-0 opacity-5">
+      <!-- Added animated pizza pattern background -->
+      <svg class="absolute inset-0 w-full h-full" viewBox="0 0 1000 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <style>
+            @keyframes float {
+              0%, 100% { transform: translateY(0px); opacity: 0.15; }
+              50% { transform: translateY(-20px); opacity: 0.25; }
+            }
+            .pizza-float { animation: float 6s ease-in-out infinite; }
+            .pizza-float:nth-child(2) { animation-delay: 1s; }
+            .pizza-float:nth-child(3) { animation-delay: 2s; }
+            .pizza-float:nth-child(4) { animation-delay: 3s; }
+          </style>
+        </defs>
+        <!-- Full pizza circles for background animation -->
+        <g class="pizza-float" opacity="0.3">
+          <circle cx="150" cy="100" r="60" fill="none" stroke="white" stroke-width="2"/>
+          <path d="M150 100L150 50" stroke="white" stroke-width="1.5"/>
+          <circle cx="150" cy="80" r="3" fill="white"/>
+          <circle cx="180" cy="100" r="3" fill="white"/>
+        </g>
+        <g class="pizza-float" opacity="0.25">
+          <circle cx="850" cy="200" r="50" fill="none" stroke="white" stroke-width="2"/>
+          <path d="M850 200L850 160" stroke="white" stroke-width="1.5"/>
+          <circle cx="850" cy="185" r="2.5" fill="white"/>
+          <circle cx="875" cy="200" r="2.5" fill="white"/>
+        </g>
+        <g class="pizza-float" opacity="0.2">
+          <circle cx="300" cy="600" r="55" fill="none" stroke="white" stroke-width="2"/>
+          <path d="M300 600L300 555" stroke="white" stroke-width="1.5"/>
+          <circle cx="300" cy="580" r="3" fill="white"/>
+          <circle cx="328" cy="600" r="3" fill="white"/>
+        </g>
+        <g class="pizza-float" opacity="0.3">
+          <circle cx="700" cy="700" r="45" fill="none" stroke="white" stroke-width="2"/>
+          <path d="M700 700L700 665" stroke="white" stroke-width="1.5"/>
+          <circle cx="700" cy="685" r="2" fill="white"/>
+          <circle cx="720" cy="700" r="2" fill="white"/>
+        </g>
+      </svg>
+      <!-- Keep existing blur elements -->
+      <div class="absolute top-20 left-10 w-72 h-72 bg-white rounded-full filter blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-20 right-10 w-96 h-96 bg-white rounded-full filter blur-3xl animate-pulse"></div>
     </div>
-  </section>
-
-  <!-- MENÚ -->
-  <section id="menu" class="food_section scroll-fade">
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2 class="shiny-text">Nuestras Pizzas</h2>
+    
+    <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+      <h1 class="text-6xl md:text-7xl font-black text-white mb-6 animate-fadeInUp leading-tight">
+        Pizzas Artesanales
+        <span class="bg-gradient-to-r from-brand-orange to-orange-400 bg-clip-text text-transparent">de Calidad</span>
+      </h1>
+      <p class="text-lg md:text-xl text-gray-300 mb-12 animate-fadeInUp max-w-2xl mx-auto leading-relaxed" style="animation-delay: 0.2s;">
+        Ingredientes frescos seleccionados, masa elaborada diariamente y horno artesanal. La mejor experiencia gastronómica en Bilbao.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp" style="animation-delay: 0.4s;">
+        <a href="tel:946413918" class="gradient-brand text-white px-10 py-4 rounded-lg text-lg font-semibold hover:shadow-2xl hover:scale-105 transition-all flex items-center justify-center gap-2">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+          </svg>
+          Pedir Ahora
+        </a>
+        <a href="#menu" class="bg-white text-brand-dark px-10 py-4 rounded-lg text-lg font-semibold hover:shadow-2xl hover:scale-105 transition-all">
+          Explorar Menú
+        </a>
       </div>
-      <ul class="pizza-list">
-        <li><strong>MARGARITA — 9,50 €</strong><br>Tomate y Mozzarella</li>
-        <li><strong>NEW YORK — 10,00 €</strong><br>Tomate, Mozzarella y Jamón</li>
-        <li><strong>BASEMARK — 10,50 €</strong><br>Tomate, Mozzarella, Huevo y Jamón</li>
-        <li><strong>CAPRI — 10,50 €</strong><br>Tomate, Mozzarella, Bacon y Champiñones</li>
-        <li><strong>NAPOLE — 12,00 €</strong><br>Tomate, Mozzarella, Provolone, Jamón, Tomate Natural, Ajo y Aceitunas</li>
-        <li><strong>CARBONARA — 11,50 €</strong><br>Nata, Mozzarella, Cebolla, Bacon y Champiñones</li>
-        <li><strong>PEPPERONI — 10,00 €</strong><br>Tomate, Mozzarella y Pepperoni</li>
-        <li><strong>CASERO — 12,00 €</strong><br>Tomate, Mozzarella, Queso de Cabra, Bacon y Nueces</li>
-        <li><strong>IBÉRICA — 12,50 €</strong><br>Tomate, Mozzarella, Jamón Ibérico, Rúcula y Parmesano</li>
-        <li><strong>4 QUESOS — 12,00 €</strong><br>Tomate, Mozzarella, Emmental, Provolone, Queso Azul y Brie</li>
-        <li><strong>FORMAGGI — 12,50 €</strong><br>Tomate, Mozzarella, Emmental, Gorgonzola, Brie y Provolone</li>
-        <li><strong>BARBACOA — 12,00 €</strong><br>Tomate, Mozzarella, Carne, Cebolla y Salsa Barbacoa</li>
-        <li><strong>POLLO — 12,50 €</strong><br>Tomate, Mozzarella, Pimiento Rojo, Pollo, Salsa de Chilly Dulce</li>
-        <li><strong>BOLOÑESA — 12,50 €</strong><br>Tomate, Mozzarella, Carne, Parmesano y Salsa Boloñesa</li>
-        <li><strong>NEPTO — 12,50 €</strong><br>Tomate, Mozzarella, Atún y Anchoas</li>
-        <li><strong>BRASWURST — 12,00 €</strong><br>Tomate, Mozzarella, Salchicha Bratwurst y Parmesano</li>
-        <li><strong>VEGETAL — 12,00 €</strong><br>Tomate, Mozzarella, Champiñones, Pimiento Verde y Cebolla</li>
-        <li><strong>HAWAIANA — 12,00 €</strong><br>Tomate, Mozzarella, Jamón y Piña</li>
-      </ul>
     </div>
   </section>
 
-  <!-- HORARIO -->
-  <section id="horario" class="section_box dark scroll-fade">
-    <h2 class="shiny-text">Horario</h2>
-    <p class="shiny-text">Lunes–Jueves: 12:30–16:00 / 18:30–23:30</p>
-    <p class="shiny-text">Viernes: 12:30–16:00 / 18:30–07:30</p>
-    <p class="shiny-text">Sábado: 17:30–07:30</p>
-    <p class="shiny-text">Domingo: 17:30–00:00</p>
+  <!-- Added professional "Why Choose Us" section -->
+  <section class="py-24 bg-brand-light dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-20">
+        <h2 class="text-4xl md:text-5xl font-black text-brand-dark dark:text-white mb-4">
+          Por Qué Elegir Best Pizza
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          Más de una década de excelencia en cada pizza que preparamos
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all">
+          <div class="w-16 h-16 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-2.77 3.066 3.066 0 00-3.58 3.03A6.124 6.124 0 001.5 12.75a6 6 0 006 6h.75a.75.75 0 000-1.5h-.75a4.5 4.5 0 010-9h2.25a4.5 4.5 0 010 9h-.75a.75.75 0 000 1.5h.75a6 6 0 006-6 6.124 6.124 0 00-1.433-4.065A3.066 3.066 0 0016.588.97a3.066 3.066 0 00-1.745 2.77 3.066 3.066 0 01-3.58 3.03 6.124 6.124 0 00-1.996-4.315z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-brand-dark dark:text-white mb-3">Ingredientes Frescos</h3>
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Seleccionamos cada ingrediente con cuidado, utilizando proveedores locales de confianza para garantizar la máxima calidad.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all">
+          <div class="w-16 h-16 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5.951-1.243 5.753 1.243a1 1 0 001.142-1.409l-7-14z"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-brand-dark dark:text-white mb-3">Recetas Auténticas</h3>
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Combinamos técnicas italianas tradicionales con creatividad local para ofrecer pizzas únicas y memorables.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all">
+          <div class="w-16 h-16 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-brand-dark dark:text-white mb-3">Entregas Rápidas</h3>
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Preparamos cada pizza al momento y la entregamos caliente. Puntualidad y eficiencia garantizadas.
+          </p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- CONTACTO -->
-  <section id="contacto" class="section_box scroll-fade">
-    <h2 class="shiny-text">Contacto</h2>
-    <p class="shiny-text">Calle Henao 27, Bilbao</p>
-    <p class="shiny-text">Tel: <a href="tel:946413918" style="color: var(--gold);">946 41 39 18</a></p>
-    <p class="shiny-text">Email: <a href="mailto:bestpizza27@gmail.com" style="color: var(--gold);">bestpizza27@gmail.com</a></p>
+  <!-- Refined menu section with better card design and spacing -->
+  <section id="menu" class="py-24 bg-white dark:bg-brand-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-20">
+        <h2 class="text-4xl md:text-5xl font-black text-brand-dark dark:text-white mb-4">
+          Nuestro Menú
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400">Pizzas artesanales con ingredientes frescos seleccionados</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Updated menu cards with refined styling and better typography -->
+        <div class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+          <div class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
+            <img src="images/f3.png" alt="Margarita Pizza" class="w-full h-full object-cover">
+          </div>
+          <div class="flex justify-between items-start mb-3">
+            <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Margarita</h3>
+            <span class="text-2xl font-black text-brand-red">€9.50</span>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella y Albahaca</p>
+          <button onclick="window.location.href='tel:946413918'" class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+            Pedir Ahora
+          </button>
+        </div>
+
+        <div class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+          <div class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
+            <img src="images/f3.png" alt="Pepperoni Pizza" class="w-full h-full object-cover">
+          </div>
+          <div class="flex justify-between items-start mb-3">
+            <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Pepperoni</h3>
+            <span class="text-2xl font-black text-brand-red">€10.00</span>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella y Pepperoni</p>
+          <button onclick="window.location.href='tel:946413918'" class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+            Pedir Ahora
+          </button>
+        </div>
+
+        <div class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+          <div class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
+            <img src="images/f3.png" alt="4 Quesos Pizza" class="w-full h-full object-cover">
+          </div>
+          <div class="flex justify-between items-start mb-3">
+            <h3 class="text-2xl font-bold text-brand-dark dark:text-white">4 Quesos</h3>
+            <span class="text-2xl font-black text-brand-red">€12.00</span>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400 mb-6">Mozzarella, Emmental, Provolone y Brie</p>
+          <button onclick="window.location.href='tel:946413918'" class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+            Pedir Ahora
+          </button>
+        </div>
+
+        <div class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+          <div class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
+            <img src="images/f3.png" alt="New York Pizza" class="w-full h-full object-cover">
+          </div>
+          <div class="flex justify-between items-start mb-3">
+            <h3 class="text-2xl font-bold text-brand-dark dark:text-white">New York</h3>
+            <span class="text-2xl font-black text-brand-red">€10.00</span>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella y Jamón</p>
+          <button onclick="window.location.href='tel:946413918'" class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+            Pedir Ahora
+          </button>
+        </div>
+
+        <div class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+          <div class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
+            <img src="images/f3.png" alt="Ibérica Pizza" class="w-full h-full object-cover">
+          </div>
+          <div class="flex justify-between items-start mb-3">
+            <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Ibérica</h3>
+            <span class="text-2xl font-black text-brand-red">€12.50</span>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400 mb-6">Jamón Ibérico, Rúcula y Parmesano</p>
+          <button onclick="window.location.href='tel:946413918'" class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+            Pedir Ahora
+          </button>
+        </div>
+
+        <div class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+          <div class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
+            <img src="images/f3.png" alt="Veggie Pizza" class="w-full h-full object-cover">
+          </div>
+          <div class="flex justify-between items-start mb-3">
+            <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Veggie</h3>
+            <span class="text-2xl font-black text-brand-red">€11.00</span>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400 mb-6">Pimientos, Champiñones y Cebolla</p>
+          <button onclick="window.location.href='tel:946413918'" class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+            Pedir Ahora
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced horario section with better layout and professional styling -->
+  <section id="horario" class="py-24 bg-brand-light dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-20">
+        <h2 class="text-4xl md:text-5xl font-black text-brand-dark dark:text-white mb-4">
+          Horario & Contacto
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400">Visítanos o contáctanos para tu pedido</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-10 shadow-sm">
+          <div class="flex items-center space-x-4 mb-10 pb-8 border-b-2 border-gray-200 dark:border-gray-700">
+            <div class="w-16 h-16 gradient-brand rounded-xl flex items-center justify-center shadow-md">
+              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <h3 class="text-3xl font-bold text-brand-dark dark:text-white">Horario de Atención</h3>
+          </div>
+
+          <div class="space-y-5">
+            <div class="flex justify-between items-center p-5 rounded-xl bg-brand-light dark:bg-gray-700">
+              <span class="font-semibold text-lg text-brand-dark dark:text-white">Lunes – Jueves</span>
+              <div class="text-right text-gray-600 dark:text-gray-400 font-medium">
+                <div>12:30 – 16:00</div>
+                <div>18:30 – 23:30</div>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-center p-5 rounded-xl bg-brand-light dark:bg-gray-700">
+              <span class="font-semibold text-lg text-brand-dark dark:text-white">Viernes</span>
+              <div class="text-right text-gray-600 dark:text-gray-400 font-medium">
+                <div>12:30 – 16:00</div>
+                <div>18:30 – 07:30</div>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-center p-5 rounded-xl bg-brand-light dark:bg-gray-700">
+              <span class="font-semibold text-lg text-brand-dark dark:text-white">Sábado</span>
+              <div class="text-right text-gray-600 dark:text-gray-400 font-medium">
+                <div>17:30 – 07:30</div>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-center p-5 rounded-xl bg-brand-light dark:bg-gray-700">
+              <span class="font-semibold text-lg text-brand-dark dark:text-white">Domingo</span>
+              <div class="text-right text-gray-600 dark:text-gray-400 font-medium">
+                <div>17:30 – 00:00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Improved contact section with better organization -->
+        <div id="contacto" class="space-y-6">
+          <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all">
+            <div class="flex items-start space-x-4">
+              <div class="w-14 h-14 gradient-brand rounded-xl flex items-center justify-center shadow-md flex-shrink-0">
+                <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-bold text-brand-dark dark:text-white mb-2">Ubicación</h4>
+                <p class="text-gray-600 dark:text-gray-400 mb-3 font-medium">
+                  Calle Henao 27<br>
+                  Bilbao, España
+                </p>
+                <a href="https://maps.google.com/?q=Calle+Henao+27+Bilbao" target="_blank" 
+                   class="inline-flex items-center text-brand-red font-semibold hover:text-brand-orange transition">
+                  Ver en Maps →
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all">
+            <div class="flex items-start space-x-4">
+              <div class="w-14 h-14 gradient-brand rounded-xl flex items-center justify-center shadow-md flex-shrink-0">
+                <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-bold text-brand-dark dark:text-white mb-2">Teléfono</h4>
+                <a href="tel:946413918" class="text-lg text-brand-red font-bold hover:text-brand-orange transition">
+                  946 41 39 18
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all">
+            <div class="flex items-start space-x-4">
+              <div class="w-14 h-14 gradient-brand rounded-xl flex items-center justify-center shadow-md flex-shrink-0">
+                <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-bold text-brand-dark dark:text-white mb-2">Email</h4>
+                <a href="mailto:bestpizza27@gmail.com" class="text-brand-red font-semibold hover:text-brand-orange transition break-all">
+                  bestpizza27@gmail.com
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- MAPA -->
-  <section class="section_box scroll-fade">
-    <div class="map_container">
-      <iframe src="https://www.google.com/maps?q=Calle+Henao+27+Bilbao&output=embed" loading="lazy"></iframe>
-    </div>
+  <section class="h-96 w-full">
+    <iframe 
+      src="https://www.google.com/maps?q=Calle+Henao+27+Bilbao&output=embed" 
+      class="w-full h-full border-0"
+      loading="lazy" 
+      allowfullscreen>
+    </iframe>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="scroll-fade">
-    <p class="shiny-text">BEST PIZZA · Calle Henao 27, Bilbao · Tel: 946 41 39 18</p>
-    <p class="shiny-text">© 2025 Best Pizza - Todos los derechos reservados</p>
+  <!-- Refined footer with better visual hierarchy -->
+  <footer class="gradient-brand py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+      <div class="flex items-center justify-center gap-3 mb-6">
+        <img src="images/logo.PNG" alt="Best Pizza Logo" class="h-12 w-auto">
+        <span class="text-3xl font-black">BEST PIZZA</span>
+      </div>
+      <p class="text-lg mb-8 opacity-90 text-center max-w-2xl mx-auto">
+        Las mejores pizzas artesanales de Bilbao. Ingredientes frescos, recetas auténticas y pasión por la calidad.
+      </p>
+      <div class="flex flex-wrap justify-center gap-8 mb-10 border-t border-white/20 pt-8">
+        <a href="#inicio" class="hover:opacity-80 font-medium transition">Inicio</a>
+        <a href="#menu" class="hover:opacity-80 font-medium transition">Menú</a>
+        <a href="#horario" class="hover:opacity-80 font-medium transition">Horario</a>
+        <a href="tel:946413918" class="hover:opacity-80 font-medium transition">Llamar</a>
+      </div>
+      <p class="text-center opacity-75">© 2025 Best Pizza. Todos los derechos reservados.</p>
+    </div>
   </footer>
 
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.js"></script>
   <script>
-    // Ocultar loader cuando la página carga
-    window.addEventListener("load", function() {
-      setTimeout(function() {
-        var loader = document.getElementById("loader");
-        if (loader) {
-          loader.classList.add("hide");
-        }
-      }, 600);
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const mobileThemeIcon = document.getElementById('mobileThemeIcon');
+    const html = document.documentElement;
+
+    const moonIcon = '<svg class="w-6 h-6 text-gray-700" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>';
+    const sunIcon = '<svg class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.706-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707a1 1 0 001.414 0zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg>';
+
+    function updateTheme(isDark) {
+      if (isDark) {
+        html.classList.add('dark');
+        themeIcon.innerHTML = sunIcon;
+        mobileThemeIcon.innerHTML = sunIcon;
+      } else {
+        html.classList.remove('dark');
+        themeIcon.innerHTML = moonIcon;
+        mobileThemeIcon.innerHTML = moonIcon;
+      }
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      updateTheme(true);
+    } else {
+      updateTheme(false);
+    }
+
+    themeToggle.addEventListener('click', () => {
+      updateTheme(!html.classList.contains('dark'));
     });
 
-    // Animación scroll fade-in
-    document.addEventListener("DOMContentLoaded", function() {
-      const elements = document.querySelectorAll(".scroll-fade");
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      }, { threshold: 0.2 });
+    mobileThemeToggle.addEventListener('click', () => {
+      updateTheme(!html.classList.contains('dark'));
+    });
 
-      elements.forEach(el => observer.observe(el));
+    // Mobile Menu
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when clicking links
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
     });
   </script>
 </body>
