@@ -1,10 +1,3 @@
-Acabo de realizar la modificación solicitada.
-
-He **eliminado** la sección completa de "Por Qué Elegir Best Pizza" y la he **reemplazado** por la sección de "Pedido Online", justo antes del "Nuestro Menú".
-
-Aquí tienes el archivo `index.html` actualizado:
-
-```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -25,8 +18,6 @@ Aquí tienes el archivo `index.html` actualizado:
     <meta property="og:url" content="https://bestpizza.es">
     <meta property="og:image" content="images/logo.PNG">
     <meta property="og:locale" content="es_ES"> <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Best Pizza Bilbao">
-    <meta name="twitter:description" content="Pizzas artesanales con ingredientes frescos. Entrega rápida en Bilbao.">
     <meta name="theme-color" content="#C1121F">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -72,11 +63,11 @@ Aquí tienes el archivo `index.html` actualizado:
 <body class="bg-white dark:bg-brand-dark transition-colors duration-300">
     <header class="bg-white dark:bg-brand-dark shadow-sm fixed w-full top-0 z-40 transition-colors duration-300">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20"> <div class="flex items-center space-x-3"> <img
-                        src="images/logo.PNG" alt="Best Pizza Logo"
+            <div class="flex justify-between items-center h-20"> <a href="#inicio" class="flex items-center space-x-3">
+                    <img src="images/logo.PNG" alt="Best Pizza Logo"
                         class="h-10 w-auto transform hover:scale-110 transition-transform"> <span
                         class="text-xl font-bold text-brand-dark dark:text-white tracking-tight">BEST PIZZA</span>
-                </div> <div class="hidden md:flex items-center space-x-8"> <a href="#inicio"
+                </a> <div class="hidden md:flex items-center space-x-8"> <a href="#inicio"
                         class="text-gray-700 dark:text-gray-300 hover:text-brand-red dark:hover:text-brand-red font-medium transition">Inicio</a>
                     <a href="#menu"
                         class="text-gray-700 dark:text-gray-300 hover:text-brand-red dark:hover:text-brand-red font-medium transition">Menú</a>
@@ -208,28 +199,50 @@ Aquí tienes el archivo `index.html` actualizado:
                     class="bg-white text-brand-dark px-10 py-4 rounded-lg text-lg font-semibold hover:shadow-2xl hover:scale-105 transition-all">
                     Explorar Menú </a> </div>
         </div>
-    </section>
-
-    <section class="py-20 bg-white dark:bg-brand-dark">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl md:text-5xl font-black text-brand-dark dark:text-white mb-4"> Pedido Online </h2>
-            <p class="text-lg text-gray-600 dark:text-gray-400 mb-12"> Pide tu pizza favorita a través de nuestras plataformas asociadas: </p>
-            
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-12">
-                <a href="https://www.just-eat.es/restaurants-bestpizzabilbo/menu?serviceType=delivery&utm_campaign=orderactionv2&utm_medium=organic&utm_source=google#pre-order" target="_blank" class="block p-6 rounded-2xl bg-brand-light dark:bg-gray-800 shadow-lg hover:shadow-xl hover:scale-105 transition-transform duration-300">
-                    <img src="images/justeat.png" alt="Logo Just Eat" class="h-16 mx-auto mb-4 object-contain">
-                    <span class="text-xl font-semibold text-brand-dark dark:text-white">Pedir en Just Eat</span>
-                </a>
-                
-                <a href="https://glovoapp.com/es/es/bilbao/stores/best-pizza-bilbao" target="_blank" class="block p-6 rounded-2xl bg-brand-light dark:bg-gray-800 shadow-lg hover:shadow-xl hover:scale-105 transition-transform duration-300">
-                    <img src="images/glovo.png" alt="Logo Glovo" class="h-16 mx-auto mb-4 object-contain">
-                    <span class="text-xl font-semibold text-brand-dark dark:text-white">Pedir en Glovo</span>
-                </a>
+    </section> <section class="py-24 bg-brand-light dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-black text-brand-dark dark:text-white mb-4"> Por Qué Elegir Best
+                    Pizza </h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"> Más de una década de excelencia
+                    en cada pizza que preparamos </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all">
+                    <div class="w-16 h-16 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M6.267 3.455a3.066 3.066 0 001.745-2.77 3.066 3.066 0 00-3.58 3.03A6.124 6.124 0 001.5 12.75a6 6 0 006 6h.75a.75.75 0 000-1.5h-.75a4.5 4.5 0 010-9h2.25a4.5 4.5 0 010 9h-.75a.75.75 0 000 1.5h.75a6 6 0 006-6 6.124 6.124 0 00-1.433-4.065A3.066 3.066 0 0016.588.97a3.066 3.066 0 00-1.745 2.77 3.066 3.066 0 01-3.58 3.03 6.124 6.124 0 00-1.996-4.315z"
+                                clip-rule="evenodd" />
+                        </svg> </div>
+                    <h3 class="text-2xl font-bold text-brand-dark dark:text-white mb-3">Ingredientes Frescos</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed"> Seleccionamos cada ingrediente con
+                        cuidado, utilizando proveedores locales de confianza para garantizar la máxima calidad. </p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all">
+                    <div class="w-16 h-16 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5.951-1.243 5.753 1.243a1 1 0 001.142-1.409l-7-14z" />
+                        </svg> </div>
+                    <h3 class="text-2xl font-bold text-brand-dark dark:text-white mb-3">Recetas Auténticas</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed"> Combinamos técnicas italianas
+                        tradicionales con creatividad local para ofrecer pizzas únicas y memorables. </p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all">
+                    <div class="w-16 h-16 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                clip-rule="evenodd" />
+                        </svg> </div>
+                    <h3 class="text-2xl font-bold text-brand-dark dark:text-white mb-3">Entregas Rápidas</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed"> Preparamos cada pizza al momento y la
+                        entregamos caliente. Puntualidad y eficiencia garantizadas. </p>
+                </div>
             </div>
         </div>
-    </section>
-    
-    <section id="menu" class="py-24 bg-white dark:bg-brand-dark">
+    </section> <section id="menu" class="py-24 bg-white dark:bg-brand-dark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-20">
                 <h2 class="text-4xl md:text-5xl font-black text-brand-dark dark:text-white mb-4"> Nuestro Menú </h2>
@@ -255,34 +268,6 @@ Aquí tienes el archivo `index.html` actualizado:
                     class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
                     <div
                         class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
-                        <img src="images/f3.png" alt="Pepperoni Pizza" class="w-full h-full object-cover"> </div>
-                    <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Pepperoni</h3> <span
-                            class="text-2xl font-black text-brand-red">€10.00</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella y Pepperoni</p> <button
-                        onclick="window.location.href='tel:946413918'"
-                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Pedir Ahora </button>
-                </div>
-                <div
-                    class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
-                    <div
-                        class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
-                        <img src="images/f3.png" alt="4 Quesos Pizza" class="w-full h-full object-cover"> </div>
-                    <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-2xl font-bold text-brand-dark dark:text-white">4 Quesos</h3> <span
-                            class="text-2xl font-black text-brand-red">€12.00</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">Mozzarella, Emmental, Provolone y Brie</p> <button
-                        onclick="window.location.href='tel:946413918'"
-                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Pedir Ahora </button>
-                </div>
-                <div
-                    class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
-                    <div
-                        class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
                         <img src="images/f3.png" alt="New York Pizza" class="w-full h-full object-cover"> </div>
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-2xl font-bold text-brand-dark dark:text-white">New York</h3> <span
@@ -297,13 +282,195 @@ Aquí tienes el archivo `index.html` actualizado:
                     class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
                     <div
                         class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
+                        <img src="images/f3.png" alt="Basemark Pizza" class="w-full h-full object-cover"> </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Basemark</h3> <span
+                            class="text-2xl font-black text-brand-red">€10.50</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Huevo y Jamón</p> <button
+                        onclick="window.location.href='tel:946413918'"
+                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </button>
+                </div>
+                <div
+                    class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div
+                        class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
+                        <img src="images/f3.png" alt="Capri Pizza" class="w-full h-full object-cover"> </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Capri</h3> <span
+                            class="text-2xl font-black text-brand-red">€10.50</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Bacon y Champiñones</p> <button
+                        onclick="window.location.href='tel:946413918'"
+                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </button>
+                </div>
+                <div
+                    class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div
+                        class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
+                        <img src="images/f3.png" alt="Napole Pizza" class="w-full h-full object-cover"> </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Napole</h3> <span
+                            class="text-2xl font-black text-brand-red">€12.00</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Provolone, Jamón, Champiñones,
+                        Ajo y Aceitunas</p> <button onclick="window.location.href='tel:946413918'"
+                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </button>
+                </div>
+                <div
+                    class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div
+                        class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
+                        <img src="images/f3.png" alt="Carbonara Pizza" class="w-full h-full object-cover"> </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Carbonara</h3> <span
+                            class="text-2xl font-black text-brand-red">€11.50</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Nata, Mozzarella, Cebolla, Bacon y Champiñones</p>
+                    <button onclick="window.location.href='tel:946413918'"
+                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </button>
+                </div>
+                <div
+                    class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div
+                        class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
+                        <img src="images/f3.png" alt="Pepperoni Pizza" class="w-full h-full object-cover"> </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Pepperoni</h3> <span
+                            class="text-2xl font-black text-brand-red">€10.00</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella y Pepperoni</p> <button
+                        onclick="window.location.href='tel:946413918'"
+                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </button>
+                </div>
+                <div
+                    class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div
+                        class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
+                        <img src="images/f3.png" alt="Casero Pizza" class="w-full h-full object-cover"> </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Casero</h3> <span
+                            class="text-2xl font-black text-brand-red">€12.00</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Queso de Cabra, Bacon y Huevo
+                    </p> <button onclick="window.location.href='tel:946413918'"
+                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </button>
+                </div>
+                <div
+                    class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div
+                        class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
                         <img src="images/f3.png" alt="Ibérica Pizza" class="w-full h-full object-cover"> </div>
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Ibérica</h3> <span
                             class="text-2xl font-black text-brand-red">€12.50</span>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">Jamón Ibérico, Rúcula y Parmesano</p> <button
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Jamón Ibérico, Rúcula y
+                        Parmesano</p> <button onclick="window.location.href='tel:946413918'"
+                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </button>
+                </div>
+                <div
+                    class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div
+                        class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
+                        <img src="images/f3.png" alt="4 Quesos Pizza" class="w-full h-full object-cover"> </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-2xl font-bold text-brand-dark dark:text-white">4 Quesos</h3> <span
+                            class="text-2xl font-black text-brand-red">€12.00</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Emmental, Provolone, Queso Azul
+                        y Brie</p> <button onclick="window.location.href='tel:946413918'"
+                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </button>
+                </div>
+                <div
+                    class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div
+                        class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
+                        <img src="images/f3.png" alt="Formaggi Pizza" class="w-full h-full object-cover"> </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Formaggi</h3> <span
+                            class="text-2xl font-black text-brand-red">€12.50</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Emmental, Gorgonzola, Brie y
+                        Provolone</p> <button onclick="window.location.href='tel:946413918'"
+                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </button>
+                </div>
+                <div
+                    class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div
+                        class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
+                        <img src="images/f3.png" alt="Barbacoa Pizza" class="w-full h-full object-cover"> </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Barbacoa</h3> <span
+                            class="text-2xl font-black text-brand-red">€12.00</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Carne, Cebolla y Salsa Barbacoa
+                    </p> <button onclick="window.location.href='tel:946413918'"
+                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </button>
+                </div>
+                <div
+                    class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div
+                        class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
+                        <img src="images/f3.png" alt="Pollo Pizza" class="w-full h-full object-cover"> </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Pollo</h3> <span
+                            class="text-2xl font-black text-brand-red">€12.50</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Pimiento Rojo, Pollo, Salsa de
+                        Chilly Dulce</p> <button onclick="window.location.href='tel:946413918'"
+                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </button>
+                </div>
+                <div
+                    class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div
+                        class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
+                        <img src="images/f3.png" alt="Boloñesa Pizza" class="w-full h-full object-cover"> </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Boloñesa</h3> <span
+                            class="text-2xl font-black text-brand-red">€12.50</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Carne, Parmesano y Salsa
+                        Boloñesa</p> <button onclick="window.location.href='tel:946413918'"
+                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </button>
+                </div>
+                <div
+                    class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div
+                        class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
+                        <img src="images/f3.png" alt="Nepto Pizza" class="w-full h-full object-cover"> </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Nepto</h3> <span
+                            class="text-2xl font-black text-brand-red">€12.50</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Atún y Anchoas</p> <button
                         onclick="window.location.href='tel:946413918'"
+                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </button>
+                </div>
+                <div
+                    class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div
+                        class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
+                        <img src="images/f3.png" alt="Brauwurst Pizza" class="w-full h-full object-cover"> </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Bratwurst</h3> <span
+                            class="text-2xl font-black text-brand-red">€12.00</span>
+                    </div>
+                    <p class="text-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Salchicha Bratwurst y Parmesano</p>
+                    <button onclick="window.location.href='tel:946413918'"
                         class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
                         Pedir Ahora </button>
                 </div>
@@ -313,10 +480,24 @@ Aquí tienes el archivo `index.html` actualizado:
                         class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
                         <img src="images/f3.png" alt="Veggie Pizza" class="w-full h-full object-cover"> </div>
                     <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Veggie</h3> <span
-                            class="text-2xl font-black text-brand-red">€11.00</span>
+                        <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Vegetal</h3> <span
+                            class="text-2xl font-black text-brand-red">€12.00</span>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">Pimientos, Champiñones y Cebolla</p> <button
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Champiñones, Pimiento Verde y rojo,
+                        Cebolla</p> <button onclick="window.location.href='tel:946413918'"
+                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </button>
+                </div>
+                <div
+                    class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div
+                        class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
+                        <img src="images/f3.png" alt="Hawaiana Pizza" class="w-full h-full object-cover"> </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Hawaiana</h3> <span
+                            class="text-2xl font-black text-brand-red">€12.00</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Jamón y Piña</p> <button
                         onclick="window.location.href='tel:946413918'"
                         class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
                         Pedir Ahora </button>
@@ -440,8 +621,71 @@ Aquí tienes el archivo `index.html` actualizado:
             <p class="text-center opacity-75">© 2025 Best Pizza. Todos los derechos reservados.</p>
         </div>
     </footer>
-    <script> // Theme Toggle const themeToggle = document.getElementById('themeToggle'); const mobileThemeToggle = document.getElementById('mobileThemeToggle'); const themeIcon = document.getElementById('themeIcon'); const mobileThemeIcon = document.getElementById('mobileThemeIcon'); const html = document.documentElement; const moonIcon = '<svg class="w-6 h-6 text-gray-700" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>'; const sunIcon = '<svg class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.706-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707a1 1 0 001.414 0zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg>'; function updateTheme(isDark) { if (isDark) { html.classList.add('dark'); themeIcon.innerHTML = sunIcon; mobileThemeIcon.innerHTML = sunIcon; } else { html.classList.remove('dark'); themeIcon.innerHTML = moonIcon; mobileThemeIcon.innerHTML = moonIcon; } localStorage.setItem('theme', isDark ? 'dark' : 'light'); } const savedTheme = localStorage.getItem('theme'); if (savedTheme === 'dark') { updateTheme(true); } else { updateTheme(false); } themeToggle.addEventListener('click', () => { updateTheme(!html.classList.contains('dark')); }); mobileThemeToggle.addEventListener('click', () => { updateTheme(!html.classList.contains('dark')); }); // Mobile Menu const mobileMenuBtn = document.getElementById('mobileMenuBtn'); const mobileMenu = document.getElementById('mobileMenu'); mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); }); // Close mobile menu when clicking links mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); }); // Smooth scroll document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function (e) { e.preventDefault(); const target = document.querySelector(this.getAttribute('href')); if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); }); </script>
+    <script> // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const mobileThemeIcon = document.getElementById('mobileThemeIcon');
+        const html = document.documentElement;
+        const moonIcon = '<svg class="w-6 h-6 text-gray-700" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>';
+        const sunIcon = '<svg class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.706-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707a1 1 0 001.414 0zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg>';
+
+        function updateTheme(isDark) {
+            if (isDark) {
+                html.classList.add('dark');
+                themeIcon.innerHTML = sunIcon;
+                mobileThemeIcon.innerHTML = sunIcon;
+            } else {
+                html.classList.remove('dark');
+                themeIcon.innerHTML = moonIcon;
+                mobileThemeIcon.innerHTML = moonIcon;
+            }
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // FIX: Improved logic to check local storage first, then system preference.
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        // The theme is dark if the user saved 'dark' OR if no preference is saved and the system prefers dark.
+        const isDarkInitial = savedTheme === 'dark' || (savedTheme === null && prefersDark);
+        
+        updateTheme(isDarkInitial);
+
+        themeToggle.addEventListener('click', () => {
+            updateTheme(!html.classList.contains('dark'));
+        });
+
+        mobileThemeToggle.addEventListener('click', () => {
+            updateTheme(!html.classList.contains('dark'));
+        });
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking links
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
-```
