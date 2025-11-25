@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/logo.PNG" type="image/png"> 
     <title>Best Pizza Bilbao - Pizzas Artesanales Auténticas | Entrega a Domicilio</title>
-    <link rel="icon" href="images/logo.PNG" type="image/png">
     <meta name="description"
         content="Descubre Best Pizza, la mejor pizzería artesanal en Bilbao. Pizzas elaboradas con ingredientes frescos, masa casera y horno tradicional. Pide ahora al 946 41 39 18">
     <meta name="keywords"
@@ -486,7 +486,7 @@
         // 1. Initialize theme on load
         const savedTheme = localStorage.getItem('theme');
         // Default to 'light' if nothing is saved
-        const isDark = (savedTheme === 'dark');
+        const isDark = (savedTheme === 'dark'); 
         updateTheme(isDark); // Esto inicializa el tema y los iconos correctamente.
 
         // 2. Add event listeners for toggling
@@ -499,11 +499,11 @@
             const isCurrentlyDark = html.classList.contains('dark');
             updateTheme(!isCurrentlyDark);
         });
-
+        
         // Mobile Menu
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
-
+        
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
@@ -515,7 +515,7 @@
             });
         });
 
-        // Smooth scroll with fixed header offset
+        // Smooth scroll with fixed header offset (Improved UX)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
