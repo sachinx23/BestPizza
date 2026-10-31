@@ -108,6 +108,35 @@
         .transition-all {
             transition: all 0.3s ease;
         }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Que la cabecera fija no tape el título al saltar a una sección */
+        section[id],
+        #contacto {
+            scroll-margin-top: 5rem;
+        }
+
+        @media (min-width: 1024px) and (hover: hover) {
+            .hero-bg {
+                background-attachment: fixed !important;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
     </style>
 </head>
 
@@ -126,17 +155,17 @@
                         class="text-gray-700 dark:text-gray-300 hover:text-brand-red dark:hover:text-brand-red font-medium transition">Horario</a>
                     <a href="#contacto"
                         class="text-gray-700 dark:text-gray-300 hover:text-brand-red dark:hover:text-brand-red font-medium transition">Contacto</a>
-                    <button id="themeToggle"
+                    <button id="themeToggle" type="button" aria-label="Cambiar tema claro/oscuro"
                         class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition">
                         <svg id="themeIcon"
                             class="w-6 h-6 text-gray-700" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                        </svg> </button> <a href="tel:946413918"
+                        </svg> </button> <a href="tel:+34946413918"
                         class="gradient-brand text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transform hover:-translate-y-1 transition flex items-center gap-2">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                             <path
                                 d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                        </svg> Llamar </a> </div> <button id="mobileMenuBtn"
+                        </svg> Llamar </a> </div> <button id="mobileMenuBtn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu"
                     class="md:hidden p-2 rounded-lg hover:bg-brand-light dark:hover:bg-gray-700"> <svg
                         class="w-6 h-6 text-brand-dark dark:text-gray-300" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24">
@@ -153,12 +182,12 @@
                     <a href="#contacto"
                         class="text-gray-700 dark:text-gray-300 hover:text-brand-red font-medium px-4 py-2 rounded-lg hover:bg-brand-light dark:hover:bg-gray-700 transition">Contacto</a>
                     <div class="flex items-center justify-between px-4"> <span
-                            class="text-gray-700 dark:text-gray-300 font-medium">Tema</span> <button
+                            class="text-gray-700 dark:text-gray-300 font-medium">Tema</span> <button type="button" aria-label="Cambiar tema claro/oscuro"
                             id="mobileThemeToggle" class="p-2 rounded-full bg-gray-100 dark:bg-gray-700">
                             <svg id="mobileThemeIcon"
                                 class="w-6 h-6 text-gray-700" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                            </svg> </button> </div> <a href="tel:946413918"
+                            </svg> </button> </div> <a href="tel:+34946413918"
                         class="gradient-brand text-white text-center px-6 py-3 rounded-full font-semibold mx-4 flex items-center justify-center gap-2">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                             <path
@@ -167,9 +196,9 @@
                 </div>
             </div>
         </nav>
-    </header> <section id="inicio" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
-        style="background: linear-gradient(135deg, rgba(26, 26, 26, 0.75) 0%, rgba(45, 45, 45, 0.75) 100%), url('images/pizza_bg.webp') center/cover no-repeat; background-attachment: fixed;">
-        <div class="absolute inset-0 opacity-5"> <svg
+    </header> <section id="inicio" class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
+        style="background: linear-gradient(135deg, rgba(26, 26, 26, 0.75) 0%, rgba(45, 45, 45, 0.75) 100%), url('images/pizza_bg.webp') center/cover no-repeat;">
+        <div class="absolute inset-0 opacity-5" aria-hidden="true"> <svg
                 class="absolute inset-0 w-full h-full" viewBox="0 0 1000 800" preserveAspectRatio="xMidYMid slice"
                 xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -240,7 +269,7 @@
             <p class="text-lg md:text-xl text-gray-300 mb-12 animate-fadeInUp max-w-2xl mx-auto leading-relaxed"
                 style="animation-delay: 0.2s;"> Ingredientes frescos seleccionados, masa elaborada diariamente. La mejor experiencia gastronómica en Bilbao. </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp" style="animation-delay: 0.4s;">
-                <a href="tel:946413918"
+                <a href="tel:+34946413918"
                     class="gradient-brand text-white px-10 py-4 rounded-lg text-lg font-semibold hover:shadow-2xl hover:scale-105 transition-all flex items-center justify-center gap-2">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                         <path
@@ -299,12 +328,12 @@
             <p class="text-lg text-gray-600 dark:text-gray-400 mb-12"> Pide tu pizza favorita a través de nuestras plataformas asociadas: </p>
             
             <div class="flex flex-col sm:flex-row justify-center items-center gap-12">
-                <a href="https://www.just-eat.es/restaurants-bestpizzabilbo/menu" target="_blank" class="block p-6 rounded-2xl bg-brand-light dark:bg-gray-800 shadow-lg hover:shadow-xl hover:scale-105 transition-transform duration-300">
+                <a href="https://www.just-eat.es/restaurants-bestpizzabilbo/menu" target="_blank" rel="noopener" class="block p-6 rounded-2xl bg-brand-light dark:bg-gray-800 shadow-lg hover:shadow-xl hover:scale-105 transition-transform duration-300">
                     <img src="images/justeat.png" alt="Logo Just Eat" class="h-16 mx-auto mb-4 object-contain">
                     <span class="text-xl font-semibold text-brand-dark dark:text-white">Pedir en Just Eat</span>
                 </a>
                 
-                <a href="https://glovoapp.com/es/es/bilbao/stores/best-pizza-bilbao" target="_blank" class="block p-6 rounded-2xl bg-brand-light dark:bg-gray-800 shadow-lg hover:shadow-xl hover:scale-105 transition-transform duration-300">
+                <a href="https://glovoapp.com/es/es/bilbao/stores/best-pizza-bilbao" target="_blank" rel="noopener" class="block p-6 rounded-2xl bg-brand-light dark:bg-gray-800 shadow-lg hover:shadow-xl hover:scale-105 transition-transform duration-300">
                     <img src="images/glovo.png" alt="Logo Glovo" class="h-16 mx-auto mb-4 object-contain">
                     <span class="text-xl font-semibold text-brand-dark dark:text-white">Pedir en Glovo</span>
                 </a>
@@ -326,12 +355,11 @@
                         <img src="images/pizza-margarita.webp" alt="Margarita Pizza" width="80" height="80" loading="lazy" class="w-full h-full object-cover"> </div>
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Margarita</h3> <span
-                            class="text-2xl font-black text-brand-red">€9.50</span>
+                            class="text-2xl font-black text-brand-red">9,50 €</span>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella </p> <button
-                        onclick="window.location.href='tel:946413918'"
-                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Pedir Ahora </button>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella </p> <a href="tel:+34946413918"
+                        class="block text-center w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </a>
                 </div>
                 <div
                     class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
@@ -340,12 +368,11 @@
                         <img src="images/pizza-generica.webp" alt="New York Pizza" width="80" height="80" loading="lazy" class="w-full h-full object-cover"> </div>
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-2xl font-bold text-brand-dark dark:text-white">New York</h3> <span
-                            class="text-2xl font-black text-brand-red">€10.00</span>
+                            class="text-2xl font-black text-brand-red">10,00 €</span>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella y Jamón</p> <button
-                        onclick="window.location.href='tel:946413918'"
-                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Pedir Ahora </button>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella y Jamón</p> <a href="tel:+34946413918"
+                        class="block text-center w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </a>
                 </div>
                 <div
                     class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
@@ -354,12 +381,11 @@
                         <img src="images/pizza-generica.webp" alt="Basemark Pizza" width="80" height="80" loading="lazy" class="w-full h-full object-cover"> </div>
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Basemark</h3> <span
-                            class="text-2xl font-black text-brand-red">€10.50</span>
+                            class="text-2xl font-black text-brand-red">10,50 €</span>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Huevo y Jamón</p> <button
-                        onclick="window.location.href='tel:946413918'"
-                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Pedir Ahora </button>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Huevo y Jamón</p> <a href="tel:+34946413918"
+                        class="block text-center w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </a>
                 </div>
                 <div
                     class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
@@ -368,12 +394,11 @@
                         <img src="images/pizza-generica.webp" alt="Capri Pizza" width="80" height="80" loading="lazy" class="w-full h-full object-cover"> </div>
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Capri</h3> <span
-                            class="text-2xl font-black text-brand-red">€10.50</span>
+                            class="text-2xl font-black text-brand-red">10,50 €</span>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Bacon y Champiñones</p> <button
-                        onclick="window.location.href='tel:946413918'"
-                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Pedir Ahora </button>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Bacon y Champiñones</p> <a href="tel:+34946413918"
+                        class="block text-center w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </a>
                 </div>
                 <div
                     class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
@@ -382,12 +407,12 @@
                         <img src="images/pizza-generica.webp" alt="Napole Pizza" width="80" height="80" loading="lazy" class="w-full h-full object-cover"> </div>
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Napole</h3> <span
-                            class="text-2xl font-black text-brand-red">€12.00</span>
+                            class="text-2xl font-black text-brand-red">12,00 €</span>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Provolone, Jamón, Champiñones,
-                        Ajo y Aceitunas</p> <button onclick="window.location.href='tel:946413918'"
-                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Pedir Ahora </button>
+                        Ajo y Aceitunas</p> <a href="tel:+34946413918"
+                        class="block text-center w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </a>
                 </div>
                 <div
                     class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
@@ -396,12 +421,12 @@
                         <img src="images/pizza-generica.webp" alt="Carbonara Pizza" width="80" height="80" loading="lazy" class="w-full h-full object-cover"> </div>
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Carbonara</h3> <span
-                            class="text-2xl font-black text-brand-red">€11.50</span>
+                            class="text-2xl font-black text-brand-red">11,50 €</span>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400 mb-6">Nata, Mozzarella, Cebolla, Bacon y Champiñones</p>
-                    <button onclick="window.location.href='tel:946413918'"
-                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Pedir Ahora </button>
+                    <a href="tel:+34946413918"
+                        class="block text-center w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </a>
                 </div>
                 <div
                     class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
@@ -410,12 +435,11 @@
                         <img src="images/pizza-pepperoni.webp" alt="Pepperoni Pizza" width="80" height="80" loading="lazy" class="w-full h-full object-cover"> </div>
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Pepperoni</h3> <span
-                            class="text-2xl font-black text-brand-red">€10.00</span>
+                            class="text-2xl font-black text-brand-red">10,00 €</span>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella y Pepperoni</p> <button
-                        onclick="window.location.href='tel:946413918'"
-                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Pedir Ahora </button>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella y Pepperoni</p> <a href="tel:+34946413918"
+                        class="block text-center w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </a>
                 </div>
                 <div
                     class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
@@ -424,12 +448,12 @@
                         <img src="images/pizza-generica.webp" alt="Casero Pizza" width="80" height="80" loading="lazy" class="w-full h-full object-cover"> </div>
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Casero</h3> <span
-                            class="text-2xl font-black text-brand-red">€12.00</span>
+                            class="text-2xl font-black text-brand-red">12,00 €</span>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Queso de Cabra, Bacon y Huevo
-                    </p> <button onclick="window.location.href='tel:946413918'"
-                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Pedir Ahora </button>
+                    </p> <a href="tel:+34946413918"
+                        class="block text-center w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </a>
                 </div>
                 <div
                     class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
@@ -438,12 +462,12 @@
                         <img src="images/pizza-generica.webp" alt="Ibérica Pizza" width="80" height="80" loading="lazy" class="w-full h-full object-cover"> </div>
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Ibérica</h3> <span
-                            class="text-2xl font-black text-brand-red">€12.50</span>
+                            class="text-2xl font-black text-brand-red">12,50 €</span>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Jamón Ibérico, Rúcula y
-                        Parmesano</p> <button onclick="window.location.href='tel:946413918'"
-                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Pedir Ahora </button>
+                        Parmesano</p> <a href="tel:+34946413918"
+                        class="block text-center w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </a>
                 </div>
                 <div
                     class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
@@ -452,12 +476,12 @@
                         <img src="images/pizza-generica.webp" alt="4 Quesos Pizza" width="80" height="80" loading="lazy" class="w-full h-full object-cover"> </div>
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-2xl font-bold text-brand-dark dark:text-white">4 Quesos</h3> <span
-                            class="text-2xl font-black text-brand-red">€12.00</span>
+                            class="text-2xl font-black text-brand-red">12,00 €</span>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Emmental, Provolone, Queso Azul
-                        y Brie</p> <button onclick="window.location.href='tel:946413918'"
-                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Pedir Ahora </button>
+                        y Brie</p> <a href="tel:+34946413918"
+                        class="block text-center w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </a>
                 </div>
                 <div
                     class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
@@ -466,12 +490,12 @@
                         <img src="images/pizza-generica.webp" alt="Formaggi Pizza" width="80" height="80" loading="lazy" class="w-full h-full object-cover"> </div>
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Formaggi</h3> <span
-                            class="text-2xl font-black text-brand-red">€12.50</span>
+                            class="text-2xl font-black text-brand-red">12,50 €</span>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Emmental, Gorgonzola, Brie y
-                        Provolone</p> <button onclick="window.location.href='tel:946413918'"
-                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Pedir Ahora </button>
+                        Provolone</p> <a href="tel:+34946413918"
+                        class="block text-center w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </a>
                 </div>
                 <div
                     class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
@@ -480,12 +504,12 @@
                         <img src="images/pizza-generica.webp" alt="Barbacoa Pizza" width="80" height="80" loading="lazy" class="w-full h-full object-cover"> </div>
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Barbacoa</h3> <span
-                            class="text-2xl font-black text-brand-red">€12.00</span>
+                            class="text-2xl font-black text-brand-red">12,00 €</span>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Carne, Cebolla y Salsa Barbacoa
-                    </p> <button onclick="window.location.href='tel:946413918'"
-                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Pedir Ahora </button>
+                    </p> <a href="tel:+34946413918"
+                        class="block text-center w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </a>
                 </div>
                 <div
                     class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
@@ -494,12 +518,12 @@
                         <img src="images/pizza-generica.webp" alt="Pollo Pizza" width="80" height="80" loading="lazy" class="w-full h-full object-cover"> </div>
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Pollo</h3> <span
-                            class="text-2xl font-black text-brand-red">€12.50</span>
+                            class="text-2xl font-black text-brand-red">12,50 €</span>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Pimiento Rojo, Pollo, Salsa de
-                        Chilly Dulce</p> <button onclick="window.location.href='tel:946413918'"
-                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Pedir Ahora </button>
+                        Chili Dulce</p> <a href="tel:+34946413918"
+                        class="block text-center w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </a>
                 </div>
                 <div
                     class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
@@ -508,12 +532,12 @@
                         <img src="images/pizza-generica.webp" alt="Boloñesa Pizza" width="80" height="80" loading="lazy" class="w-full h-full object-cover"> </div>
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Boloñesa</h3> <span
-                            class="text-2xl font-black text-brand-red">€12.50</span>
+                            class="text-2xl font-black text-brand-red">12,50 €</span>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Carne, Parmesano y Salsa
-                        Boloñesa</p> <button onclick="window.location.href='tel:946413918'"
-                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Pedir Ahora </button>
+                        Boloñesa</p> <a href="tel:+34946413918"
+                        class="block text-center w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </a>
                 </div>
                 <div
                     class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
@@ -522,26 +546,25 @@
                         <img src="images/pizza-generica.webp" alt="Nepto Pizza" width="80" height="80" loading="lazy" class="w-full h-full object-cover"> </div>
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Nepto</h3> <span
-                            class="text-2xl font-black text-brand-red">€12.50</span>
+                            class="text-2xl font-black text-brand-red">12,50 €</span>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Atún y Anchoas</p> <button
-                        onclick="window.location.href='tel:946413918'"
-                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Pedir Ahora </button>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Atún y Anchoas</p> <a href="tel:+34946413918"
+                        class="block text-center w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </a>
                 </div>
                 <div
                     class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
                     <div
                         class="w-20 h-20 gradient-brand rounded-xl flex items-center justify-center mb-6 shadow-md overflow-hidden">
-                        <img src="images/pizza-generica.webp" alt="Brauwurst Pizza" width="80" height="80" loading="lazy" class="w-full h-full object-cover"> </div>
+                        <img src="images/pizza-generica.webp" alt="Bratwurst Pizza" width="80" height="80" loading="lazy" class="w-full h-full object-cover"> </div>
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Bratwurst</h3> <span
-                            class="text-2xl font-black text-brand-red">€12.00</span>
+                            class="text-2xl font-black text-brand-red">12,00 €</span>
                     </div>
-                    <p class="text-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Salchicha Bratwurst y Parmesano</p>
-                    <button onclick="window.location.href='tel:946413918'"
-                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Pedir Ahora </button>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Salchicha Bratwurst y Parmesano</p>
+                    <a href="tel:+34946413918"
+                        class="block text-center w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </a>
                 </div>
                 <div
                     class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
@@ -550,12 +573,12 @@
                         <img src="images/pizza-vegetal.webp" alt="Veggie Pizza" width="80" height="80" loading="lazy" class="w-full h-full object-cover"> </div>
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Vegetal</h3> <span
-                            class="text-2xl font-black text-brand-red">€12.00</span>
+                            class="text-2xl font-black text-brand-red">12,00 €</span>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Champiñones, Pimiento Verde y rojo,
-                        Cebolla</p> <button onclick="window.location.href='tel:946413918'"
-                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Pedir Ahora </button>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Champiñones, Pimiento Verde y Rojo,
+                        Cebolla</p> <a href="tel:+34946413918"
+                        class="block text-center w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </a>
                 </div>
                 <div
                     class="bg-brand-light dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
@@ -564,12 +587,11 @@
                         <img src="images/pizza-generica.webp" alt="Hawaiana Pizza" width="80" height="80" loading="lazy" class="w-full h-full object-cover"> </div>
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-2xl font-bold text-brand-dark dark:text-white">Hawaiana</h3> <span
-                            class="text-2xl font-black text-brand-red">€12.00</span>
+                            class="text-2xl font-black text-brand-red">12,00 €</span>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Jamón y Piña</p> <button
-                        onclick="window.location.href='tel:946413918'"
-                        class="w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Pedir Ahora </button>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Tomate, Mozzarella, Jamón y Piña</p> <a href="tel:+34946413918"
+                        class="block text-center w-full gradient-brand text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Pedir Ahora </a>
                 </div>
             </div>
         </div>
@@ -633,7 +655,7 @@
                                 <h4 class="text-xl font-bold text-brand-dark dark:text-white mb-2">Ubicación</h4>
                                 <p class="text-gray-600 dark:text-gray-400 mb-3 font-medium"> Calle Henao 27<br> Bilbao,
                                     España </p> <a href="https://maps.google.com/?q=Calle+Henao+27+Bilbao"
-                                    target="_blank"
+                                    target="_blank" rel="noopener"
                                     class="inline-flex items-center text-brand-red font-semibold hover:text-brand-orange transition">
                                     Ver en Maps → </a>
                             </div>
@@ -649,7 +671,7 @@
                                 </svg> </div>
                             <div>
                                 <h4 class="text-xl font-bold text-brand-dark dark:text-white mb-2">Teléfono</h4> <a
-                                    href="tel:946413918"
+                                    href="tel:+34946413918"
                                     class="text-lg text-brand-red font-bold hover:text-brand-orange transition"> 946 41
                                     39 18 </a>
                             </div>
@@ -675,7 +697,7 @@
             </div>
         </div>
     </section> <section class="h-96 w-full"> <iframe src="https://www.google.com/maps?q=Calle+Henao+27+Bilbao&output=embed"
-            class="w-full h-full border-0" loading="lazy" allowfullscreen> </iframe> </section>
+            title="Mapa: Best Pizza, Calle Henao 27, Bilbao" class="w-full h-full border-0" loading="lazy" allowfullscreen> </iframe> </section>
     <footer class="gradient-brand py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
             <div class="flex items-center justify-center gap-3 mb-6"> <img src="images/logo.webp" alt="Best Pizza Logo" width="48" height="48" loading="lazy"
@@ -685,9 +707,10 @@
             <div class="flex flex-wrap justify-center gap-8 mb-10 border-t border-white/20 pt-8"> <a href="#inicio"
                     class="hover:opacity-80 font-medium transition">Inicio</a> <a href="#menu"
                     class="hover:opacity-80 font-medium transition">Menú</a> <a href="#horario"
-                    class="hover:opacity-80 font-medium transition">Horario</a> <a href="tel:946413918"
+                    class="hover:opacity-80 font-medium transition">Horario</a> <a href="#contacto"
+                    class="hover:opacity-80 font-medium transition">Contacto</a> <a href="tel:+34946413918"
                     class="hover:opacity-80 font-medium transition">Llamar</a> </div>
-            <p class="text-center opacity-75">© 2025 Best Pizza. Todos los derechos reservados.</p>
+            <p class="text-center opacity-75">© <span id="year">2026</span> Best Pizza. Todos los derechos reservados.</p>
         </div>
     </footer>
     <script> // Theme Toggle
@@ -729,26 +752,20 @@
         const mobileMenu = document.getElementById('mobileMenu');
 
         mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            const isOpen = !mobileMenu.classList.toggle('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
         });
 
         // Close mobile menu when clicking links
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
             });
         });
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
+        // Año del pie de página
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
 
