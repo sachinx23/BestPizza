@@ -55,6 +55,8 @@
 html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    /* Quita el recuadro azul/gris que pone el móvil al tocar un enlace o botón */
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -94,7 +96,6 @@ p {
 :focus-visible {
     outline: 3px solid var(--crust);
     outline-offset: 3px;
-    border-radius: 4px;
 }
 
 section[id],
@@ -140,7 +141,7 @@ section[id],
     font-size: 17px;
     text-decoration: none;
     cursor: pointer;
-    transition: background-color .2s, color .2s, border-color .2s;
+    transition: background-color .2s, color .2s, border-color .2s, transform .12s;
 }
 
 .btn svg {
@@ -166,6 +167,19 @@ section[id],
 .btn-ghost:hover {
     border-color: #fff;
     background: rgba(255, 255, 255, .08);
+}
+
+/* Respuesta al pulsar (sustituye al recuadro del navegador) */
+.btn:active,
+.icon-btn:active,
+.call-fab:active,
+.app-link:active {
+    transform: scale(.96);
+}
+
+.btn-primary:active,
+.call-fab:active {
+    background: var(--tomato-dark);
 }
 
 /* ---------- Cabecera ---------- */
@@ -594,7 +608,7 @@ section[id],
     text-decoration: none;
     font-weight: 700;
     font-size: 18px;
-    transition: border-color .2s;
+    transition: border-color .2s, transform .12s;
 }
 
 .app-link:hover {
@@ -835,6 +849,10 @@ section[id],
     opacity: 1;
     visibility: visible;
     transform: none;
+}
+
+.call-fab.is-visible:active {
+    transform: scale(.96);
 }
 
 .call-fab:hover {
