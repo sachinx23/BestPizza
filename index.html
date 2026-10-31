@@ -71,6 +71,7 @@
                 if (saved === 'dark' || (saved === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) theme = 'dark';
             } catch (e) { }
             document.documentElement.setAttribute('data-theme', theme);
+            document.documentElement.classList.add('js-spin');
         })();
     </script>
 
@@ -507,6 +508,26 @@
         }
 
         try { renderOpenStatus(); setInterval(renderOpenStatus, 60 * 1000); } catch (e) { }
+
+        // Giro de la pizza de portada: empieza cuando la imagen ha cargado
+        // y al menos un tercio está en pantalla, para que se vea entero en móvil.
+        (function () {
+            const pizza = document.querySelector('.hero-art img');
+            const spin = () => pizza.classList.add('is-spinning');
+            if (!('IntersectionObserver' in window)) { spin(); return; }
+            const ready = pizza.complete ? Promise.resolve() : new Promise(r => {
+                pizza.addEventListener('load', r, { once: true });
+                pizza.addEventListener('error', r, { once: true });
+            });
+            ready.then(() => {
+                const io = new IntersectionObserver(([e]) => {
+                    if (e.isIntersecting) { spin(); io.disconnect(); }
+                }, { threshold: 0.33 });
+                io.observe(pizza);
+            });
+            // Por si algo falla, que nunca se quede invisible
+            setTimeout(spin, 8000);
+        })();
 
         // Botón flotante de llamar: aparece al dejar atrás la portada
         // (que ya tiene sus botones) y se oculta sobre el pie de página.
