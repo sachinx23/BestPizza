@@ -805,6 +805,48 @@ section[id],
     font-size: 15px;
 }
 
+/* ---------- Botón flotante de llamar ---------- */
+
+/* Solo en móvil y tablet: en escritorio la cabecera ya tiene el botón de llamar */
+.call-fab {
+    display: none;
+    position: fixed;
+    right: max(20px, env(safe-area-inset-right));
+    bottom: max(20px, env(safe-area-inset-bottom));
+    z-index: 40;
+    align-items: center;
+    gap: 10px;
+    min-height: 56px;
+    padding: 0 24px 0 20px;
+    border-radius: 999px;
+    background: var(--tomato);
+    color: #fff;
+    font-weight: 700;
+    font-size: 17px;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(23, 53, 42, .35), 0 2px 6px rgba(0, 0, 0, .15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(16px);
+    transition: opacity .25s, transform .25s, visibility .25s, background-color .2s;
+}
+
+.call-fab.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+
+.call-fab:hover {
+    background: var(--tomato-dark);
+}
+
+.call-fab svg {
+    width: 22px;
+    height: 22px;
+    flex: none;
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 980px) {
@@ -815,6 +857,10 @@ section[id],
 
     .menu-btn {
         display: inline-grid;
+    }
+
+    .call-fab {
+        display: inline-flex;
     }
 
     .header-actions {
@@ -860,6 +906,14 @@ section[id],
 
 @media (max-width: 560px) {
     body {
+        font-size: 16px;
+    }
+
+    .call-fab {
+        right: max(16px, env(safe-area-inset-right));
+        bottom: max(16px, env(safe-area-inset-bottom));
+        min-height: 52px;
+        padding: 0 20px 0 16px;
         font-size: 16px;
     }
 

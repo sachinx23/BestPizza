@@ -412,6 +412,11 @@
         </div>
     </footer>
 
+    <a href="tel:+34946413918" id="callFab" class="call-fab" aria-label="Llamar para pedir al 946 41 39 18">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+        <span>Llamar para pedir</span>
+    </a>
+
     <script>
         // Tema claro / oscuro
         const root = document.documentElement;
@@ -502,6 +507,20 @@
         }
 
         try { renderOpenStatus(); setInterval(renderOpenStatus, 60 * 1000); } catch (e) { }
+
+        // Botón flotante de llamar: aparece al dejar atrás la portada
+        // (que ya tiene sus botones) y se oculta sobre el pie de página.
+        const callFab = document.getElementById('callFab');
+        if ('IntersectionObserver' in window) {
+            let heroVisible = true, footerVisible = false;
+            const updateFab = () => callFab.classList.toggle('is-visible', !heroVisible && !footerVisible);
+            new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; updateFab(); })
+                .observe(document.getElementById('inicio'));
+            new IntersectionObserver(([e]) => { footerVisible = e.isIntersecting; updateFab(); })
+                .observe(document.querySelector('.site-footer'));
+        } else {
+            callFab.classList.add('is-visible');
+        }
 
         // Año del pie de página
         document.getElementById('year').textContent = new Date().getFullYear();
