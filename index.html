@@ -262,6 +262,11 @@
             </div>
         </div>
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <a href="#horario" id="openStatus" hidden
+                class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-white/10 backdrop-blur text-white text-sm font-medium hover:bg-white/20 transition">
+                <span id="openStatusDot" class="w-2.5 h-2.5 rounded-full"></span>
+                <span id="openStatusText"></span>
+            </a>
             <h1 class="text-6xl md:text-7xl font-black text-white mb-6 animate-fadeInUp leading-tight"> Pizzas
                 Artesanales <span
                     class="bg-gradient-to-r from-brand-orange to-orange-400 bg-clip-text text-transparent">de
@@ -614,27 +619,27 @@
                         <h3 class="text-3xl font-bold text-brand-dark dark:text-white">Horario de Atención</h3>
                     </div>
                     <div class="space-y-5">
-                        <div class="flex justify-between items-center p-5 rounded-xl bg-brand-light dark:bg-gray-700">
+                        <div data-days="1,2,3,4" class="flex justify-between items-center p-5 rounded-xl bg-brand-light dark:bg-gray-700">
                             <span class="font-semibold text-lg text-brand-dark dark:text-white">Lunes – Jueves</span>
                             <div class="text-right text-gray-600 dark:text-gray-400 font-medium">
                                 <div>12:30 – 16:00</div>
                                 <div>18:30 – 23:30</div>
                             </div>
                         </div>
-                        <div class="flex justify-between items-center p-5 rounded-xl bg-brand-light dark:bg-gray-700">
+                        <div data-days="5" class="flex justify-between items-center p-5 rounded-xl bg-brand-light dark:bg-gray-700">
                             <span class="font-semibold text-lg text-brand-dark dark:text-white">Viernes</span>
                             <div class="text-right text-gray-600 dark:text-gray-400 font-medium">
                                 <div>12:30 – 16:00</div>
                                 <div>18:30 – 07:30</div>
                             </div>
                         </div>
-                        <div class="flex justify-between items-center p-5 rounded-xl bg-brand-light dark:bg-gray-700">
+                        <div data-days="6" class="flex justify-between items-center p-5 rounded-xl bg-brand-light dark:bg-gray-700">
                             <span class="font-semibold text-lg text-brand-dark dark:text-white">Sábado</span>
                             <div class="text-right text-gray-600 dark:text-gray-400 font-medium">
                                 <div>17:30 – 07:30</div>
                             </div>
                         </div>
-                        <div class="flex justify-between items-center p-5 rounded-xl bg-brand-light dark:bg-gray-700">
+                        <div data-days="0" class="flex justify-between items-center p-5 rounded-xl bg-brand-light dark:bg-gray-700">
                             <span class="font-semibold text-lg text-brand-dark dark:text-white">Domingo</span>
                             <div class="text-right text-gray-600 dark:text-gray-400 font-medium">
                                 <div>17:30 – 00:00</div>
@@ -763,6 +768,64 @@
                 mobileMenuBtn.setAttribute('aria-expanded', 'false');
             });
         });
+
+        // Estado "Abierto ahora / Cerrado" según el horario, en hora de Bilbao
+        // (minutos desde las 00:00; un cierre > 1440 significa que acaba al día siguiente)
+        const SCHEDULE = {
+            0: [[17 * 60 + 30, 24 * 60]],                                    // Domingo
+            1: [[12 * 60 + 30, 16 * 60], [18 * 60 + 30, 23 * 60 + 30]],      // Lunes
+            2: [[12 * 60 + 30, 16 * 60], [18 * 60 + 30, 23 * 60 + 30]],
+            3: [[12 * 60 + 30, 16 * 60], [18 * 60 + 30, 23 * 60 + 30]],
+            4: [[12 * 60 + 30, 16 * 60], [18 * 60 + 30, 23 * 60 + 30]],
+            5: [[12 * 60 + 30, 16 * 60], [18 * 60 + 30, 24 * 60 + 7 * 60 + 30]], // Viernes
+            6: [[17 * 60 + 30, 24 * 60 + 7 * 60 + 30]],                      // Sábado
+        };
+
+        function madridNow() {
+            const parts = new Intl.DateTimeFormat('en-GB', {
+                timeZone: 'Europe/Madrid', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+            }).formatToParts(new Date());
+            const get = (t) => parts.find(p => p.type === t).value;
+            const day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(get('weekday'));
+            return { day, minutes: Number(get('hour')) * 60 + Number(get('minute')) };
+        }
+
+        const fmt = (m) => String(Math.floor(m / 60) % 24).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+
+        function openStatus() {
+            const { day, minutes } = madridNow();
+            const yesterday = (day + 6) % 7;
+            // ¿Seguimos dentro de un turno que empezó ayer y acaba de madrugada?
+            for (const [open, close] of SCHEDULE[yesterday]) {
+                if (close > 1440 && minutes < close - 1440) return { open: true, text: 'Abierto ahora · cierra a las ' + fmt(close) };
+            }
+            for (const [open, close] of SCHEDULE[day]) {
+                if (minutes >= open && minutes < close) return { open: true, text: 'Abierto ahora · cierra a las ' + fmt(close) };
+            }
+            for (const [open] of SCHEDULE[day]) {
+                if (minutes < open) return { open: false, text: 'Cerrado · abrimos hoy a las ' + fmt(open) };
+            }
+            const tomorrow = (day + 1) % 7;
+            return { open: false, text: 'Cerrado · abrimos mañana a las ' + fmt(SCHEDULE[tomorrow][0][0]) };
+        }
+
+        function renderOpenStatus() {
+            const status = openStatus();
+            document.getElementById('openStatusText').textContent = status.text;
+            const dot = document.getElementById('openStatusDot');
+            dot.classList.toggle('bg-green-400', status.open);
+            dot.classList.toggle('bg-red-400', !status.open);
+            document.getElementById('openStatus').hidden = false;
+
+            const today = String(madridNow().day);
+            document.querySelectorAll('[data-days]').forEach(row => {
+                const isToday = row.dataset.days.split(',').includes(today);
+                row.classList.toggle('ring-2', isToday);
+                row.classList.toggle('ring-brand-red', isToday);
+            });
+        }
+
+        try { renderOpenStatus(); setInterval(renderOpenStatus, 60 * 1000); } catch (e) { }
 
         // Año del pie de página
         document.getElementById('year').textContent = new Date().getFullYear();
